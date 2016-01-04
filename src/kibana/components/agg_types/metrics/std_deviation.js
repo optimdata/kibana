@@ -4,12 +4,14 @@ define(function (require) {
     var MetricAggType = Private(require('components/agg_types/metrics/_metric_agg_type'));
     var getResponseAggConfig = Private(require('components/agg_types/metrics/_get_response_agg_config'));
 
+    var optionStringEditor = require('text!components/agg_types/controls/option_string.html');
+
     var responseAggConfigProps = {
       valProp: function () {
         var details = this.keyedDetails[this.key];
         return details.valProp;
       },
-      makeLabel: function () {
+      makeLabel: function (agg) {
         var details = this.keyedDetails[this.key];
         return details.title + ' of ' + this.fieldDisplayName();
       },
@@ -34,8 +36,15 @@ define(function (require) {
       dslName: 'extended_stats',
       title: 'Standard Deviation',
       makeLabel: function (agg) {
-        return 'Standard Deviation of ' + agg.fieldDisplayName();
+        return agg.options.label || 'Standard Deviation of ' + agg.fieldDisplayName();
       },
+      options : [
+        {
+          name: 'label',
+          editor: optionStringEditor,
+          default: ''
+        }
+      ],
       params: [
         {
           name: 'field',

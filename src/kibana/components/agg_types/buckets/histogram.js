@@ -7,20 +7,28 @@ define(function (require) {
 
     require('components/validateDateInterval');
 
+    var optionStringEditor = require('text!components/agg_types/controls/option_string.html');
+
     return new BucketAggType({
       name: 'histogram',
       title: 'Histogram',
       ordered: {},
       makeLabel: function (aggConfig) {
-        return aggConfig.params.field.displayName;
+        return aggConfig.options.label || aggConfig.params.field.displayName;
       },
       createFilter: createFilter,
+      options: [
+        {
+          name: 'label',
+          editor: optionStringEditor,
+          default: ''
+        }
+      ],
       params: [
         {
           name: 'field',
           filterFieldTypes: 'number'
         },
-
         {
           name: 'interval',
           editor: require('text!components/agg_types/controls/interval.html'),

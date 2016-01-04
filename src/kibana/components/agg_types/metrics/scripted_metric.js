@@ -5,16 +5,25 @@ define(function (require) {
 
     var stringEditor = require('text!components/agg_types/controls/string.html');
 
+    var optionStringEditor = require('text!components/agg_types/controls/option_string.html');
+
     return new MetricAggType({
       name: 'scripted_metric',
       title: 'Scripted Metric',
-      makeLabel: function (/*aggConfig*/) {
-        return 'Scripted Metric';
+      makeLabel: function (aggConfig) {
+        return aggConfig.options.label || 'Scripted Metric';
       },
       getFormat: function () {
         return fieldFormats.getDefaultInstance('number') || fieldFormats.getDefaultInstance('percent');
       },
       supportsOrderBy: false,
+      options : [
+        {
+          name: 'label',
+          editor: optionStringEditor,
+          default: ''
+        }
+      ],
       params: [
         {
           name: 'init_script',

@@ -13,6 +13,7 @@ define(function (require) {
       this.description = opts.description;
       this.schemas = opts.schemas || new VisTypeSchemas();
       this.params = opts.params || {};
+      this.options = opts.options || {};
       this.requiresSearch = opts.requiresSearch == null ? true : opts.requiresSearch; // Default to true unless otherwise specified
     }
 

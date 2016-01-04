@@ -7,6 +7,8 @@ define(function (require) {
     var Schemas = Private(require('plugins/vis_types/_schemas'));
     var createFilter = Private(require('components/agg_types/buckets/create_filter/terms'));
 
+    var optionStringEditor = require('text!components/agg_types/controls/option_string.html');
+
     var orderAggSchema = (new Schemas([
       {
         group: 'none',
@@ -28,9 +30,16 @@ define(function (require) {
       title: 'Terms',
       makeLabel: function (agg) {
         var params = agg.params;
-        return params.order.display + ' ' + params.size + ' ' + params.field.displayName;
+        return agg.options.label || params.order.display + ' ' + params.size + ' ' + params.field.displayName;
       },
       createFilter: createFilter,
+      options: [
+        {
+          name: 'label',
+          editor: optionStringEditor,
+          default: ''
+        }
+      ],
       params: [
         {
           name: 'field',

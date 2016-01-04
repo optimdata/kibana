@@ -5,12 +5,14 @@ define(function (require) {
     var createFilter = Private(require('components/agg_types/buckets/create_filter/range'));
     var FieldFormat = Private(require('components/index_patterns/_field_format/FieldFormat'));
 
+    var optionStringEditor = require('text!components/agg_types/controls/option_string.html');
+
     return new BucketAggType({
       name: 'range',
       title: 'Range',
       createFilter: createFilter,
       makeLabel: function (aggConfig) {
-        return aggConfig.params.field.displayName + ' ranges';
+        return aggConfig.options.label || aggConfig.params.field.displayName + ' ranges';
       },
       getKey: function (bucket, key, agg) {
         var id = 'from:' + bucket.from + ',to:' + bucket.to;
@@ -37,6 +39,13 @@ define(function (require) {
 
         return (agg.$$rangeAggTypeFormat = new RangeFormat());
       },
+      options: [
+        {
+          name: 'label',
+          editor: optionStringEditor,
+          default: ''
+        }
+      ],
       params: [
         {
           name: 'field',

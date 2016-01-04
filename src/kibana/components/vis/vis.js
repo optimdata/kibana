@@ -52,6 +52,7 @@ define(function (require) {
           }
 
           agg.params = _.pick(oldConfig, _.keys(aggType.params.byName));
+          agg.options = _.pick(oldConfig, _.keys(aggType.options.byName));
 
           newConfigs.push(agg);
         });
@@ -71,6 +72,7 @@ define(function (require) {
 
       this.listeners = _.assign({}, state.listeners, this.type.listeners);
       this.params = _.defaults({}, _.cloneDeep(state.params || {}), this.type.params.defaults || {});
+      this.options = _.defaults({}, _.cloneDeep(state.options || {}), this.type.options.defaults || {});
 
       this.aggs = new AggConfigs(this, state.aggs);
     };
@@ -79,6 +81,7 @@ define(function (require) {
       return {
         type: this.type.name,
         params: this.params,
+        options: this.options,
         aggs: this.aggs.map(function (agg) {
           return agg.toJSON();
         }).filter(Boolean),

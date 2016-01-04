@@ -10,6 +10,8 @@ define(function (require) {
     // required by the values editor
     require('components/number_list/number_list');
 
+    var optionStringEditor = require('text!components/agg_types/controls/option_string.html');
+
     var valueProps = {
       makeLabel: function () {
         var field = this.field();
@@ -23,8 +25,15 @@ define(function (require) {
       name: 'percentile_ranks',
       title: 'Percentile Ranks',
       makeLabel: function (agg) {
-        return 'Percentile ranks of ' + agg.fieldDisplayName();
+        return agg.options.label || 'Percentile ranks of ' + agg.fieldDisplayName();
       },
+      options : [
+        {
+          name: 'label',
+          editor: optionStringEditor,
+          default: ''
+        }
+      ],
       params: [
         {
           name: 'field',

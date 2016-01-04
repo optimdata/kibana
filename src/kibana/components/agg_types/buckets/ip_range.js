@@ -7,13 +7,22 @@ define(function (require) {
     var BucketAggType = Private(require('components/agg_types/buckets/_bucket_agg_type'));
     var createFilter = Private(require('components/agg_types/buckets/create_filter/ip_range'));
 
+    var optionStringEditor = require('text!components/agg_types/controls/option_string.html');
+
     return new BucketAggType({
       name: 'ip_range',
       title: 'IPv4 Range',
       createFilter: createFilter,
       makeLabel: function (aggConfig) {
-        return aggConfig.params.field.displayName + ' IP ranges';
+        return aggConfig.options.label || aggConfig.params.field.displayName + ' IP ranges';
       },
+      options: [
+        {
+          name: 'label',
+          editor: optionStringEditor,
+          default: ''
+        }
+      ],
       params: [
         {
           name: 'field',

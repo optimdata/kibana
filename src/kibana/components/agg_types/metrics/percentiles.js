@@ -11,6 +11,8 @@ define(function (require) {
     // required by the percentiles editor
     require('components/number_list/number_list');
 
+    var optionStringEditor = require('text!components/agg_types/controls/option_string.html');
+
     var valueProps = {
       makeLabel: function () {
         return ordinalSuffix(this.key) + ' percentile of ' + this.fieldDisplayName();
@@ -21,8 +23,15 @@ define(function (require) {
       name: 'percentiles',
       title: 'Percentiles',
       makeLabel: function (agg) {
-        return 'Percentiles of ' + agg.fieldDisplayName();
+        return agg.options.label || 'Percentiles of ' + agg.fieldDisplayName();
       },
+      options : [
+        {
+          name: 'label',
+          editor: optionStringEditor,
+          default: ''
+        }
+      ],
       params: [
         {
           name: 'field',

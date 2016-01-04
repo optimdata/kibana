@@ -3,6 +3,7 @@ define(function (require) {
     var _ = require('lodash');
     var IndexedArray = require('utils/indexed_array/index');
     var AggParams = Private(require('components/agg_types/_agg_params'));
+    var AggOptions = Private(require('components/agg_types/_agg_options'));
 
     function Schemas(schemas) {
       var self = this;
@@ -13,6 +14,12 @@ define(function (require) {
 
           if (schema.name === 'split') {
             schema.params = [
+              {
+                name: 'row',
+                default: true
+              }
+            ];
+            schema.options = [
               {
                 name: 'row',
                 default: true
@@ -30,11 +37,13 @@ define(function (require) {
             title: schema.name,
             aggFilter: '*',
             editor: false,
-            params: []
+            params: [],
+            options: []
           });
 
           // convert the params into a params registry
           schema.params = new AggParams(schema.params);
+          schema.options = new AggOptions(schema.options);
 
           return schema;
         })
