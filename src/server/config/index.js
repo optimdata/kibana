@@ -33,7 +33,7 @@ kibana.startup_timeout = kibana.startup_timeout == null ? 5000 : kibana.startup_
 var public_folder = path.resolve(__dirname, '..', 'public');
 if (!checkPath(public_folder)) public_folder = path.resolve(__dirname, '..', '..', 'kibana');
 
-var logo_path = kibana.logo_path == null ? public_folder : path.resolve(kibana.logo_path);
+var logo_path = kibana.logo_path == null ? public_folder + '/images' : path.resolve(kibana.logo_path);
 if (!checkPath(logo_path)) {
   logo_path = kibana.logo_path;
 }
