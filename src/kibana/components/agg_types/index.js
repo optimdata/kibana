@@ -12,7 +12,9 @@ define(function (require) {
         Private(require('components/agg_types/metrics/std_deviation')),
         Private(require('components/agg_types/metrics/cardinality')),
         Private(require('components/agg_types/metrics/percentiles')),
-        Private(require('components/agg_types/metrics/percentile_ranks'))
+        Private(require('components/agg_types/metrics/percentile_ranks')),
+        Private(require('components/agg_types/metrics/percentile_ranks')),
+        Private(require('components/agg_types/metrics/scripted_metric'))
       ],
       buckets: [
         Private(require('components/agg_types/buckets/date_histogram')),
