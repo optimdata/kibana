@@ -33,6 +33,11 @@ kibana.startup_timeout = kibana.startup_timeout == null ? 5000 : kibana.startup_
 var public_folder = path.resolve(__dirname, '..', 'public');
 if (!checkPath(public_folder)) public_folder = path.resolve(__dirname, '..', '..', 'kibana');
 
+var logo_path = kibana.logo_path == null ? public_folder : path.resolve(kibana.logo_path);
+if (!checkPath(logo_path)) {
+  logo_path = kibana.logo_path;
+}
+
 // Check to see if htpasswd file exists in the root directory otherwise set it to false
 var htpasswdPath = path.resolve(__dirname, '..', '.htpasswd');
 if (!checkPath(htpasswdPath)) htpasswdPath = path.resolve(__dirname, '..', '..', '..', '.htpasswd');
@@ -61,7 +66,8 @@ var config = module.exports = {
   maxSockets              : kibana.maxSockets,
   log_file                : kibana.log_file,
   request_timeout         : kibana.request_timeout,
-  ping_timeout            : kibana.ping_timeout
+  ping_timeout            : kibana.ping_timeout,
+  logo_path               : logo_path
 };
 
 config.plugins = listPlugins(config);

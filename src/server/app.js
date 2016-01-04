@@ -1,4 +1,5 @@
 var express = require('express');
+var fs = require('fs');
 var path = require('path');
 var favicon = require('serve-favicon');
 var requestLogger = require('./lib/requestLogger');
@@ -14,6 +15,15 @@ var routes = require('./routes/index');
 var proxy = require('./routes/proxy');
 
 var app = express();
+
+function checkPath(path) {
+  try {
+    fs.statSync(path);
+    return true;
+  } catch (err) {
+    return false;
+  }
+}
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -41,6 +51,14 @@ app.use(cookieParser());
 app.use(compression());
 app.use(express.static(config.public_folder));
 if (config.external_plugins_folder) app.use('/plugins', express.static(config.external_plugins_folder));
+if (checkPath(config.logo_path)) {
+  app.use('/logo', express.static(config.logo_path));
+} else {
+  app.use('/logo', function (req, res, next) {
+    res.redirect(config.logo_path + req.url);
+  }, express.static(config.logo_path));
+}
+
 
 app.use('/', routes);
 
