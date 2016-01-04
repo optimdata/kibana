@@ -5,6 +5,7 @@ define(function (require) {
 
     // and some local values
     $scope.appEmbedded = $location.search().embed || false;
+    $scope.appShowTimeFilter = $scope.appEmbedded ? ($location.search().showTimeFilter || false) : false;
     $scope.httpActive = $http.pendingRequests;
     $scope.notifList = notify._notifs;
 

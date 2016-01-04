@@ -29,6 +29,11 @@ define(function (require) {
 
         $scope.format = 'MMMM Do YYYY, HH:mm:ss.SSS';
         $scope.modes = ['quick', 'relative', 'absolute'];
+        $scope.appShowTimeFilter = $scope.$root.appShowTimeFilter;
+        if ($scope.appShowTimeFilter) {
+          $scope.modes = ['absolute'];
+          $scope.mode = 'absolute';
+        }
         $scope.activeTab = $scope.activeTab || 'filter';
 
         if (_.isUndefined($scope.mode)) $scope.mode = 'quick';
