@@ -7,6 +7,7 @@ define(function (require) {
     var pointSeries = Private(require('components/agg_response/point_series/point_series'));
     var VislibRenderbot = Private(require('plugins/vis_types/vislib/_vislib_renderbot'));
 
+    require('plugins/vis_types/controls/vislib_title_options');
     require('plugins/vis_types/controls/vislib_basic_options');
     require('plugins/vis_types/controls/point_series_options');
     require('plugins/vis_types/controls/line_interpolation_option');

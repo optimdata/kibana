@@ -1,0 +1,18 @@
+<div>
+  <div class="vis-option-item">
+    <label>
+      <input type="checkbox" ng-model="vis.params.setVisTitle">
+      Set Visualization Title
+    </label>
+    <div ng-if="vis.params.setVisTitle">
+      <label>
+        Title
+        <input name="visTitle"
+               class="form-control"
+               type="string"
+               ng-model="vis.params.visTitle"
+               ng-required="vis.params.setVisTitle">
+      </label>
+    </div>
+  </div>
+</div>

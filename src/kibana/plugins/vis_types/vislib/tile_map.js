@@ -21,7 +21,9 @@ define(function (require) {
           heatRadius: 25,
           heatBlur: 15,
           heatNormalizeData: true,
-          addTooltip: true
+          addTooltip: true,
+          setVisTitle: false,
+          visTitle: ''
         },
         mapTypes: ['Scaled Circle Markers', 'Shaded Circle Markers', 'Shaded Geohash Grid', 'Heatmap'],
         canDesaturate: !!supports.cssFilters,
