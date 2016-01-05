@@ -14,7 +14,9 @@ define(function (require) {
           shareYAxis: true,
           addTooltip: true,
           addLegend: true,
-          isDonut: false
+          isDonut: false,
+          setVisTitle: false,
+          visTitle: ''
         },
         editor: require('text!plugins/vis_types/vislib/editors/pie.html')
       },
