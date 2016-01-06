@@ -3,7 +3,7 @@ FROM debian:jessie
 # add our user and group first to make sure their IDs get assigned consistently
 RUN groupadd -r kibana && useradd -r -g kibana kibana
 
-RUN apt-get update && apt-get install -y ca-certificates curl --no-install-recommends && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y vim && apt-get install -y ca-certificates curl --no-install-recommends && rm -rf /var/lib/apt/lists/*
 
 # grab gosu for easy step-down from root
 RUN gpg --keyserver ha.pool.sks-keyservers.net --recv-keys B42F6819007F00F88E364FD4036A9C25BF357DD4
@@ -15,12 +15,14 @@ RUN arch="$(dpkg --print-architecture)" \
 	&& rm /usr/local/bin/gosu.asc \
 	&& chmod +x /usr/local/bin/gosu
 
-ENV KIBANA_VERSION 4.1.4
-ENV KIBANA_SHA1 f88a7ad612b4e7129a951cf0e64429e63d847ed9
+ENV KIBANA_VERSION 4.1.5
+ENV KIBANA_SHA1 e176ce9b702ced74181150420c881439eb4d0835
+
+COPY ./target/kibana-4.1.5-snapshot-linux-x64.tar.gz /kibana.tar.gz
 
 RUN set -x \
-	&& curl -fSL "https://download.elastic.co/kibana/kibana/kibana-${KIBANA_VERSION}-linux-x64.tar.gz" -o kibana.tar.gz \
-	&& echo "${KIBANA_SHA1}  kibana.tar.gz" | sha1sum -c - \
+	# && curl -fSL "https://download.elastic.co/kibana/kibana/kibana-${KIBANA_VERSION}-linux-x64.tar.gz" -o kibana.tar.gz \
+	# && echo "${KIBANA_SHA1}  kibana.tar.gz" | sha1sum -c - \
 	&& mkdir -p /opt/kibana \
 	&& tar -xz --strip-components=1 -C /opt/kibana -f kibana.tar.gz \
 	&& rm kibana.tar.gz
