@@ -33,7 +33,9 @@ define(function (require) {
         defaults: {
           perPage: 10,
           showPartialRows: false,
-          showMeticsAtAllLevels: false
+          showMeticsAtAllLevels: false,
+          setVisTitle: false,
+          visTitle: ''
         },
         editor: '<table-vis-params></table-vis-params>'
       },
