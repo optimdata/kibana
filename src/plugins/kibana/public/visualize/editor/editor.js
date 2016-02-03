@@ -75,7 +75,7 @@ define(function (require) {
     var configTemplate = new ConfigTemplate({
       save: require('plugins/kibana/visualize/editor/panels/save.html'),
       load: require('plugins/kibana/visualize/editor/panels/load.html'),
-      share: require('plugins/kibana/visualize/editor/panels/share.html'),
+      share: require('plugins/kibana/visualize/editor/panels/share.html')
     });
 
     if (savedVis.id) {
@@ -134,7 +134,7 @@ define(function (require) {
         $scope.responseValueAggs = null;
         try {
           $scope.responseValueAggs = editableVis.aggs.getResponseAggs().filter(function (agg) {
-            return _.get(agg, 'schema.group') === 'metrics';
+            return _.get(agg, 'schema.group') === 'metrics' && _.get(agg, 'type.supportsOrderBy');
           });
         }
         // this can fail when the agg.type is changed but the
