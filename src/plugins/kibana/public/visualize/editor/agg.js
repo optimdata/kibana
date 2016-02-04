@@ -3,6 +3,7 @@ define(function (require) {
   .get('app/visualize')
   .directive('visEditorAgg', function ($compile, $parse, $filter, Private, Notifier) {
     require('plugins/kibana/visualize/editor/agg_params');
+    require('plugins/kibana/visualize/editor/agg_options');
     require('plugins/kibana/visualize/editor/agg_add');
 
     var _ = require('lodash');

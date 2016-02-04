@@ -6,6 +6,8 @@ define(function (require) {
     var FieldFormat = Private(require('ui/index_patterns/_field_format/FieldFormat'));
     var RangeKey = Private(require('./RangeKey'));
 
+    var optionStringEditor = require('ui/agg_types/controls/option_string.html');
+
     var keyCaches = new WeakMap();
     var formats = new WeakMap();
 
@@ -14,7 +16,7 @@ define(function (require) {
       title: 'Range',
       createFilter: createFilter,
       makeLabel: function (aggConfig) {
-        return aggConfig.params.field.displayName + ' ranges';
+        return aggConfig.options.label || aggConfig.params.field.displayName + ' ranges';
       },
       getKey: function (bucket, key, agg) {
         var keys = keyCaches.get(agg);
@@ -48,6 +50,13 @@ define(function (require) {
         formats.set(agg, format);
         return format;
       },
+      options: [
+        {
+          name: 'label',
+          editor: optionStringEditor,
+          default: ''
+        }
+      ],
       params: [
         {
           name: 'field',

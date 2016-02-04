@@ -4,14 +4,22 @@ define(function (require) {
     var MetricAggType = Private(require('ui/agg_types/metrics/MetricAggType'));
     var getResponseAggConfigClass = Private(require('ui/agg_types/metrics/getResponseAggConfigClass'));
     var percentiles = Private(require('ui/agg_types/metrics/percentiles'));
+    var optionStringEditor = require('ui/agg_types/controls/option_string.html');
 
     return new MetricAggType({
       name: 'median',
       dslName: 'percentiles',
       title: 'Median',
       makeLabel: function (aggConfig) {
-        return 'Median ' + aggConfig.params.field.displayName;
+        return aggConfig.options.label || 'Median ' + aggConfig.params.field.displayName;
       },
+      options : [
+        {
+          name: 'label',
+          editor: optionStringEditor,
+          default: ''
+        }
+      ],
       params: [
         {
           name: 'field',

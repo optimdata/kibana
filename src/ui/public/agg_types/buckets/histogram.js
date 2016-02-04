@@ -5,6 +5,8 @@ define(function (require) {
     var BucketAggType = Private(require('ui/agg_types/buckets/_bucket_agg_type'));
     var createFilter = Private(require('ui/agg_types/buckets/create_filter/histogram'));
 
+    var optionStringEditor = require('ui/agg_types/controls/option_string.html');
+
     require('ui/validateDateInterval');
 
     return new BucketAggType({
@@ -12,9 +14,16 @@ define(function (require) {
       title: 'Histogram',
       ordered: {},
       makeLabel: function (aggConfig) {
-        return aggConfig.params.field.displayName;
+        return aggConfig.options.label || aggConfig.params.field.displayName;
       },
       createFilter: createFilter,
+      options: [
+        {
+          name: 'label',
+          editor: optionStringEditor,
+          default: ''
+        }
+      ],
       params: [
         {
           name: 'field',

@@ -4,17 +4,25 @@ define(function (require) {
     var fieldFormats = Private(require('ui/registry/field_formats'));
 
     var stringEditor = require('ui/agg_types/controls/string.html');
+    var optionStringEditor = require('ui/agg_types/controls/option_string.html');
 
     return new MetricAggType({
       name: 'scripted_metric',
       title: 'Scripted Metric',
-      makeLabel: function () {
-        return 'Scripted Metric';
+      makeLabel: function (aggConfig) {
+        return aggConfig.options.label || 'Scripted Metric';
       },
       getFormat: function () {
         return fieldFormats.getDefaultInstance('number') || fieldFormats.getDefaultInstance('percent');
       },
       supportsOrderBy: false,
+      options : [
+        {
+          name: 'label',
+          editor: optionStringEditor,
+          default: ''
+        }
+      ],
       params: [
         {
           name: 'init_script',
