@@ -7,6 +7,7 @@ define(function (require) {
     var fieldFormats = Private(require('ui/registry/field_formats'));
 
     var valuesEditor = require('ui/agg_types/controls/percentile_ranks.html');
+    var optionStringEditor = require('ui/agg_types/controls/option_string.html');
     // required by the values editor
     require('ui/number_list');
 
@@ -25,6 +26,13 @@ define(function (require) {
       makeLabel: function (agg) {
         return 'Percentile ranks of ' + agg.fieldDisplayName();
       },
+      options : [
+        {
+          name: 'label',
+          editor: optionStringEditor,
+          default: ''
+        }
+      ],
       params: [
         {
           name: 'field',

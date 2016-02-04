@@ -1,13 +1,21 @@
 define(function (require) {
   return function AggTypeMetricMaxProvider(Private) {
     var MetricAggType = Private(require('ui/agg_types/metrics/MetricAggType'));
+    var optionStringEditor = require('ui/agg_types/controls/option_string.html');
 
     return new MetricAggType({
       name: 'max',
       title: 'Max',
       makeLabel: function (aggConfig) {
-        return 'Max ' + aggConfig.params.field.displayName;
+        return aggConfig.options.label || 'Max ' + aggConfig.params.field.displayName;
       },
+      options : [
+        {
+          name: 'label',
+          editor: optionStringEditor,
+          default: ''
+        }
+      ],
       params: [
         {
           name: 'field',

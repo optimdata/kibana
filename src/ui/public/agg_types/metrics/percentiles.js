@@ -8,11 +8,13 @@ define(function (require) {
     var fieldFormats = Private(require('ui/registry/field_formats'));
 
     var percentsEditor = require('ui/agg_types/controls/percentiles.html');
+    var optionStringEditor = require('ui/agg_types/controls/option_string.html');
+    var stringEditor = require('ui/agg_types/controls/string.html');
     // required by the percentiles editor
     require('ui/number_list');
 
     var valueProps = {
-      makeLabel: function () {
+      makeLabel: function (toto) {
         return ordinalSuffix(this.key) + ' percentile of ' + this.fieldDisplayName();
       }
     };
@@ -23,6 +25,13 @@ define(function (require) {
       makeLabel: function (agg) {
         return 'Percentiles of ' + agg.fieldDisplayName();
       },
+      options : [
+        {
+          name: 'label',
+          editor: optionStringEditor,
+          default: ''
+        }
+      ],
       params: [
         {
           name: 'field',

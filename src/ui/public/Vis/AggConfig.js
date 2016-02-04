@@ -16,6 +16,7 @@ define(function (require) {
 
       // resolve the params
       self.fillDefaults(opts.params);
+      self.fillOptions(opts.options);
     }
 
     /**
@@ -134,6 +135,51 @@ define(function (require) {
       });
     };
 
+     /**
+     * Write the current values to this.params, filling in the defaults as we go
+     *
+     * @param  {object} [from] - optional object to read values from,
+     *                         used when initializing
+     * @return {undefined}
+     */
+    AggConfig.prototype.fillOptions = function (from) {
+      var self = this;
+      from = from || self.options || {};
+      var to = self.options = {};
+
+      self.getAggOptions().forEach(function (aggOption) {
+        var val = from[aggOption.name];
+
+        if (val == null) {
+          if (aggOption.default == null) return;
+
+          if (!_.isFunction(aggOption.default)) {
+            val = aggOption.default;
+          } else {
+            val = aggOption.default(self);
+            if (val == null) return;
+          }
+        }
+
+        if (aggOption.deserialize) {
+          var isTyped = _.isFunction(aggOption.type);
+
+          var isType = isTyped && (val instanceof aggOption.type);
+          var isObject = !isTyped && _.isObject(val);
+          var isDeserialized = (isType || isObject);
+
+          if (!isDeserialized) {
+            val = aggOption.deserialize(val, self);
+          }
+
+          to[aggOption.name] = val;
+          return;
+        }
+
+        to[aggOption.name] = _.cloneDeep(val);
+      });
+    };
+
     /**
      * Clear the parameters for this aggConfig
      *
@@ -150,6 +196,24 @@ define(function (require) {
       }
 
       return this.fillDefaults({ row: this.params.row, field: field });
+    };
+
+    /**
+     * Clear the options for this aggConfig
+     *
+     * @return {object} the new options object
+     */
+    AggConfig.prototype.resetOptions = function () {
+      var fieldOption = this.type && this.type.options.byName.field;
+      var field;
+
+      if (fieldOption) {
+        var prevField = this.options.field;
+        var fieldOpts = fieldTypeFilter(this.vis.indexPattern.fields, fieldOption.filterFieldTypes);
+        field = _.contains(fieldOpts, prevField) ? prevField : null;
+      }
+
+      return this.fillDefaults({ row: this.options.row, field: field });
     };
 
     AggConfig.prototype.write = function () {
@@ -176,7 +240,7 @@ define(function (require) {
 
     /**
      * Hook into param onRequest handling, and tell the aggConfig that it
-     * is being sent to elasticsearc.
+     * is being sent to elasticsearch.
      *
      * @return {[type]} [description]
      */
@@ -217,6 +281,7 @@ define(function (require) {
     AggConfig.prototype.toJSON = function () {
       var self = this;
       var params = self.params;
+      var options = self.options;
 
       var outParams = _.transform(self.getAggParams(), function (out, aggParam) {
         var val = params[aggParam.name];
@@ -230,11 +295,24 @@ define(function (require) {
         out[aggParam.name] = _.cloneDeep(val);
       }, {});
 
+      var outOptions = _.transform(self.getAggOptions(), function (out, aggOption) {
+        var val = options[aggOption.name];
+
+        // don't serialize undefined/null values
+        if (val == null) return;
+        if (aggOption.serialize) val = aggOption.serialize(val, self);
+        if (val == null) return;
+
+        // to prevent accidental leaking, we will clone all complex values
+        out[aggOption.name] = _.cloneDeep(val);
+      }, {});
+
       return {
         id: self.id,
         type: self.type && self.type.name,
         schema: self.schema && self.schema.name,
-        params: outParams
+        params: outParams,
+        options: outOptions
       };
     };
 
@@ -244,6 +322,14 @@ define(function (require) {
         (this.schema) ? this.schema.params.raw : []
       );
     };
+
+    AggConfig.prototype.getAggOptions = function () {
+      return [].concat(
+        (this.type) ? this.type.options.raw : [],
+        (this.schema) ? this.schema.options.raw : []
+      );
+    };
+
 
     AggConfig.prototype.getResponseAggs = function () {
       if (!this.type) return;
@@ -288,6 +374,7 @@ define(function (require) {
     };
 
     AggConfig.prototype.fieldDisplayName = function () {
+      if (this.options && this.options.label) return this.options.label;
       var field = this.field();
       return field ? (field.displayName || this.fieldName()) : '';
     };

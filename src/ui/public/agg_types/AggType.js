@@ -2,6 +2,7 @@ define(function (require) {
   return function AggTypeFactory(Private) {
     var _ = require('lodash');
     var AggParams = Private(require('ui/agg_types/AggParams'));
+    var AggOptions = Private(require('ui/agg_types/AggOptions'));
     var fieldFormats = Private(require('ui/registry/field_formats'));
 
     /**
@@ -98,6 +99,24 @@ define(function (require) {
         });
 
         this.params = new AggParams(this.params);
+      }
+
+       /**
+       * An instance of {{#crossLink "AggOptions"}}{{/crossLink}}.
+       *
+       * @property options
+       * @type {AggOptions}
+       */
+      this.options = config.options || [];
+      if (!(this.options instanceof AggOptions)) {
+        // always append the raw JSON option
+        this.options.push({
+          name: 'json',
+          type: 'json',
+          advanced: true
+        });
+
+        this.options = new AggOptions(this.options);
       }
 
       /**

@@ -9,6 +9,8 @@ define(function (require) {
     var intervalOptions = Private(require('ui/agg_types/buckets/_interval_options'));
     var configDefaults = Private(require('ui/config/defaults'));
 
+    var optionStringEditor = require('ui/agg_types/controls/option_string.html');
+
     var detectedTimezone = tzDetect.determine().name();
     var tzOffset = moment().format('Z');
 
@@ -36,7 +38,7 @@ define(function (require) {
       makeLabel: function (agg) {
         var output = this.params.write(agg);
         var params = output.params;
-        return params.field + ' per ' + (output.metricScaleText || output.bucketInterval.description);
+        return (agg.options.label || params.field) + ' per ' + (output.metricScaleText || output.bucketInterval.description);
       },
       createFilter: createFilter,
       decorateAggConfig: function () {
@@ -56,6 +58,13 @@ define(function (require) {
           }
         };
       },
+      options: [
+        {
+          name: 'label',
+          editor: optionStringEditor,
+          default: ''
+        }
+      ],
       params: [
         {
           name: 'field',

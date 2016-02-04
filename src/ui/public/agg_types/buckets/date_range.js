@@ -8,6 +8,7 @@ define(function (require) {
     var createFilter = Private(require('ui/agg_types/buckets/create_filter/date_range'));
     var fieldFormats = Private(require('ui/registry/field_formats'));
 
+    var optionStringEditor = require('ui/agg_types/controls/option_string.html');
 
     return new BucketAggType({
       name: 'date_range',
@@ -21,8 +22,15 @@ define(function (require) {
         return fieldFormats.getDefaultInstance('string');
       },
       makeLabel: function (aggConfig) {
-        return aggConfig.params.field.displayName + ' date ranges';
+        return aggConfig.options.label || aggConfig.params.field.displayName + ' date ranges';
       },
+      options: [
+        {
+          name: 'label',
+          editor: optionStringEditor,
+          default: ''
+        }
+      ],
       params: [{
         name: 'field',
         filterFieldTypes: 'date',
