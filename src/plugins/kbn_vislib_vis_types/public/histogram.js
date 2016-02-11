@@ -20,7 +20,9 @@ define(function (require) {
           addTimeMarker: false,
           defaultYExtents: false,
           setYExtents: false,
-          yAxis: {}
+          yAxis: {},
+          setVisTitle: false,
+          visTitle: ''
         },
         scales: ['linear', 'log', 'square root'],
         modes: ['stacked', 'percentage', 'grouped'],
