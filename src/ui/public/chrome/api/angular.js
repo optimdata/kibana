@@ -61,6 +61,7 @@ module.exports = function (chrome, internals) {
           onRouteChange();
 
           // and some local values
+          $scope.appShowTimeFilter = $location.search().embed && $location.search().showTimeFilter || false;
           $scope.httpActive = $http.pendingRequests;
           $scope.notifList = require('ui/notify')._notifs;
           $scope.appSwitcherTemplate = new ConfigTemplate({
