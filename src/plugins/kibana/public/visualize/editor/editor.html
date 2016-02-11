@@ -136,6 +136,10 @@
           <i class="fa" aria-label="{{::savedVis.vis.type.title}} Icon" ng-class="savedVis.vis.type.icon"></i>
           <span ng-bind="::savedVis.title"></span>
         </div>
+        <div class="visualize-info-tab" title="{{::savedVis.vis.type.visTitle}}">
+          <i class="fa" aria-label="{{::savedVis.vis.type.visTitle}} Icon" ng-class="savedVis.vis.type.icon"></i>
+          Displayed Title : <span ng-bind="::savedVis.vis.params.visTitle"></span>
+        </div>
       </div>
 
       <visualize vis="vis" ui-state="uiState" show-spy-panel="chrome.getVisible()" search-source="savedVis.searchSource" editable-vis="editableVis"></visualize>

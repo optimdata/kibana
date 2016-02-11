@@ -24,7 +24,9 @@ define(function (require) {
           addTimeMarker: false,
           defaultYExtents: false,
           setYExtents: false,
-          yAxis: {}
+          yAxis: {},
+          setVisTitle: false,
+          visTitle: ''
         },
         scales: ['linear', 'log', 'square root'],
         editor: require('plugins/kbn_vislib_vis_types/editors/line.html')

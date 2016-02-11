@@ -8,6 +8,7 @@ define(function (require) {
     var pointSeries = Private(require('ui/agg_response/point_series/point_series'));
     var VislibRenderbot = Private(require('ui/vislib_vis_type/VislibRenderbot'));
 
+    require('plugins/kbn_vislib_vis_types/controls/vislib_title_options');
     require('plugins/kbn_vislib_vis_types/controls/vislib_basic_options');
     require('plugins/kbn_vislib_vis_types/controls/point_series_options');
     require('plugins/kbn_vislib_vis_types/controls/line_interpolation_option');
