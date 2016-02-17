@@ -10,7 +10,12 @@ module.exports = async (kbnServer, server, config) => {
   let UiBundle = require('./UiBundle');
   let UiBundleCollection = require('./UiBundleCollection');
   let UiBundlerEnv = require('./UiBundlerEnv');
-  let loadingGif = readFile(fromRoot('src/ui/public/loading.gif'), { encoding: 'base64'});
+
+  let loadingGif = 'imagesBank/kibana/loading.gif';
+  if (config.get('kibana.images_bank') === 'ui/images') {
+    loadingGif = readFile(fromRoot('src/ui/public/loading.gif'), { encoding: 'base64'});
+    loadingGif = 'data:image/gif;base64,' + loadingGif;
+  }
 
   let uiExports = kbnServer.uiExports = new UiExports({
     urlBasePath: config.get('server.basePath')
@@ -41,7 +46,6 @@ module.exports = async (kbnServer, server, config) => {
 
   // render all views from the ui/views directory
   server.setupViews(resolve(__dirname, 'views'));
-  server.exposeStaticFile('/loading.gif', resolve(__dirname, 'public/loading.gif'));
 
   server.route({
     path: '/app/{id}',

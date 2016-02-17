@@ -5,7 +5,8 @@ module.exports = function (kibana) {
       return Joi.object({
         enabled: Joi.boolean().default(true),
         defaultAppId: Joi.string().default('discover'),
-        index: Joi.string().default('.kibana')
+        index: Joi.string().default('.kibana'),
+        images_bank: Joi.string().default('ui/images')
       }).default();
     },
 

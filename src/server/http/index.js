@@ -7,6 +7,7 @@ module.exports = function (kbnServer, server, config) {
   let format = require('url').format;
 
   let getDefaultRoute = require('./getDefaultRoute');
+  let fromRoot = require('../../utils/fromRoot');
 
   server = kbnServer.server = new Hapi.Server();
 
@@ -134,6 +135,29 @@ module.exports = function (kbnServer, server, config) {
         hashRoute: `${config.get('server.basePath')}/app/kibana`,
         defaultRoute: getDefaultRoute(kbnServer),
       });
+    }
+  });
+
+  let readFile = require('fs').readFileSync;
+
+  server.route({
+    method: 'GET',
+    path: '/app/imagesBank/{p*}',
+    handler: function (req, reply) {
+      let path = req.path;
+      if (path === '/' || path.charAt(path.length - 1) === '/') {
+        return reply(Boom.notFound());
+      }
+      if (config.get('kibana.images_bank') === 'ui/images') {
+        return reply.redirect(format({
+          pathname: '/bundles/src/ui/public/images/' + req.params.p
+        }));
+      }
+
+      return reply.redirect(format({
+        pathname: `${config.get('kibana.images_bank')}` + req.params.p
+      }))
+      .permanent(true);
     }
   });
 
