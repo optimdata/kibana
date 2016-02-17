@@ -19,6 +19,7 @@ let legacySettingMap = {
   // kibana
   kibana_index: 'kibana.index',
   default_app_id: 'kibana.defaultAppId',
+  kibana_images_bank: 'kibana.images_bank',
 
   // es
   ca: 'elasticsearch.ssl.ca',

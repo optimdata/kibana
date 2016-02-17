@@ -10,7 +10,10 @@ var chrome = require('ui/chrome');
 var routes = require('ui/routes');
 var modules = require('ui/modules');
 
-var kibanaLogoUrl = require('ui/images/kibana.svg');
+require('ui/images/kibana/banner.svg');
+require('ui/images/kibana/favicon.ico');
+
+var kibanaLogoUrl = 'imagesBank/kibana/banner.svg';
 
 routes
 .otherwise({
@@ -19,8 +22,8 @@ routes
 
 chrome
 .setBrand({
-  'logo': 'url(' + kibanaLogoUrl + ') left no-repeat',
-  'smallLogo': 'url(' + kibanaLogoUrl + ') left no-repeat'
+  'logo': 'url(' + kibanaLogoUrl + ') center no-repeat',
+  'smallLogo': 'url(' + kibanaLogoUrl + ') center no-repeat'
 })
 .setNavBackground('#222222')
 .setTabDefaults({

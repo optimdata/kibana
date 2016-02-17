@@ -11,6 +11,9 @@
 # The Elasticsearch instance to use for all your queries.
 # elasticsearch.url: "http://localhost:9200"
 
+# The specific path where to find no_banner.png and initial_load.gif
+# kibana.images_bank: "https://url/to/cdn/"
+
 # preserve_elasticsearch_host true will send the hostname specified in `elasticsearch`. If you set it to false,
 # then the host you use to connect to *this* Kibana instance will be sent.
 # elasticsearch.preserveHost: true
