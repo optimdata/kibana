@@ -39,7 +39,8 @@ module.exports = function (kibana) {
           let config = server.config();
 
           return {
-            kbnDefaultAppId: config.get('kibana.defaultAppId')
+            kbnDefaultAppId: config.get('kibana.defaultAppId'),
+            kbnImagesBank: config.get('kibana.images_bank')
           };
         }
       }

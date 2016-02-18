@@ -12,7 +12,8 @@ module.exports = async (kbnServer, server, config) => {
   let UiBundlerEnv = require('./UiBundlerEnv');
 
   let loadingGif = 'imagesBank/kibana/loading.gif';
-  if (config.get('kibana.images_bank') === 'ui/images') {
+
+  if (!config.has('kibana.images_bank') || (config.get('kibana.images_bank') === 'ui/images')) {
     loadingGif = readFile(fromRoot('src/ui/public/loading.gif'), { encoding: 'base64'});
     loadingGif = 'data:image/gif;base64,' + loadingGif;
   }
