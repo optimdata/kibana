@@ -44,7 +44,6 @@ module.exports = function (chrome, internals) {
         },
         controllerAs: 'chrome',
         controller: function ($scope, $rootScope, $location, $http) {
-
           // are we showing the embedded version of the chrome?
           internals.setVisibleDefault(!$location.search().embed);
 
@@ -61,6 +60,8 @@ module.exports = function (chrome, internals) {
           onRouteChange();
 
           // and some local values
+          $scope.appShowTimeFilter = $location.search().embed && $location.search().showTimeFilter || false;
+          $scope.appShowSearchBar = $location.search().embed && $location.search().showSearchBar || false;
           $scope.httpActive = $http.pendingRequests;
           $scope.notifList = require('ui/notify')._notifs;
           $scope.appSwitcherTemplate = new ConfigTemplate({

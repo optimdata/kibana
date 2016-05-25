@@ -7,7 +7,7 @@
         aria-label="{{savedObj.vis.type.title}} Icon"
         title="{{savedObj.vis.type.title}}">
       </i>
-      {{savedObj.title}}
+      {{ savedObj.vis.params.visTitle || savedObj.title}}
     </span>
     <div class="btn-group">
       <a aria-label="Edit" ng-show="chrome.getVisible() && editUrl" ng-href="{{editUrl}}">

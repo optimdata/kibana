@@ -9,11 +9,11 @@ block content
       text-align: center;
       font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
       color: #444444;
-      padding-top: 45px;
+      padding-top: 75px;
       background-size: 128px;
       background-position: top center;
       background-repeat: no-repeat;
-      background-image: url('data:image/gif;base64,#{loadingGif}');
+      background-image: url('#{loadingGif}');
     }
 
     .ui-app-loading small {
@@ -25,13 +25,12 @@ block content
 
   div.ui-app-loading
     h1
-      strong Kibana
+      #appname.strong.
       small.
         &nbsp;is loading. Give me a moment here. I'm loading a whole bunch of code. Don't worry, all this good stuff will be cached up for next time!
 
   script.
     window.onload = function () {
-
       var hideLoadingMessage = /#.*[?&]embed(&|$)/.test(window.location.href);
       if (hideLoadingMessage) {
         var loading = document.querySelector('.ui-app-loading h1');
@@ -71,3 +70,10 @@ block content
         }
       }());
     };
+
+    var regex = /#.*[?&]appname=(\w+)[&|$]/
+    if (m = regex.exec(window.location.href)) {
+      #{appName} = m[1];
+    }
+    document.getElementById("appname").innerHTML='<strong>'+#{appName}+'</strong>';
+    document.getElementById("apptitle").innerHTML=#{appName};

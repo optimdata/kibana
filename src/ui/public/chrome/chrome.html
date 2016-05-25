@@ -103,7 +103,7 @@
   </config>
 
   <config
-    ng-show="timefilter.enabled"
+    ng-show="timefilter.enabled && !appShowTimeFilter && !appShowSearchBar"
     config-template="pickerTemplate"
     config-object="timefilter"
     config-close="pickerTemplate.close">

@@ -26,7 +26,7 @@
       <br>
       <div class="row">
         <div class="col-md-2">
-          <ul class="nav nav-pills nav-stacked kbn-timepicker-modes">
+          <ul ng-show="appShowTimeFilter === false" class="nav nav-pills nav-stacked kbn-timepicker-modes">
             <li ng-class="{active: mode === 'quick' }">
               <a ng-click="setMode('quick')">quick</a>
             </li>

@@ -3,6 +3,7 @@ define(function (require) {
     var _ = require('lodash');
     var MetricAggType = Private(require('ui/agg_types/metrics/MetricAggType'));
     var getResponseAggConfigClass = Private(require('ui/agg_types/metrics/getResponseAggConfigClass'));
+    var optionStringEditor = require('ui/agg_types/controls/option_string.html');
 
     var responseAggConfigProps = {
       valProp: function () {
@@ -34,8 +35,15 @@ define(function (require) {
       dslName: 'extended_stats',
       title: 'Standard Deviation',
       makeLabel: function (agg) {
-        return 'Standard Deviation of ' + agg.fieldDisplayName();
+        return agg.options.label || 'Standard Deviation of ' + agg.fieldDisplayName();
       },
+      options : [
+        {
+          name: 'label',
+          editor: optionStringEditor,
+          default: ''
+        }
+      ],
       params: [
         {
           name: 'field',
