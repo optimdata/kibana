@@ -60,6 +60,7 @@ define(function (require) {
         });
 
         var dash = $scope.dash = $route.current.locals.dash;
+        $scope.appShowSearchBar = $location.search().embed && $location.search().showSearchBar || false;
 
         if (dash.timeRestore && dash.timeTo && dash.timeFrom && !getAppState.previouslyStored()) {
           timefilter.time.to = dash.timeTo;
