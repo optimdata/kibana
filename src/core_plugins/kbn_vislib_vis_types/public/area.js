@@ -25,7 +25,9 @@ export default function HistogramVisType(Private) {
         times: [],
         addTimeMarker: false,
         defaultYExtents: false,
-        setYExtents: false
+        setYExtents: false,
+        setVisTitle: false,
+        visTitle: ''
       },
       legendPositions: [{
         value: 'left',

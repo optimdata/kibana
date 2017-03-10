@@ -22,6 +22,10 @@ function MarkdownVisProvider(Private) {
     description: 'Useful for displaying explanations or instructions for dashboards.',
     template: markdownVisTemplate,
     params: {
+      defaults: {
+        setVisTitle: false,
+        visTitle: ''
+      },
       editor: markdownVisParamsTemplate
     },
     requiresSearch: false,
