@@ -30,7 +30,9 @@ export default function TileMapVisType(Private, getAppState, courier, config) {
         legendPosition: 'bottomright',
         mapZoom: 2,
         mapCenter: [15, 5],
-        wms: config.get('visualization:tileMap:WMSdefaults')
+        wms: config.get('visualization:tileMap:WMSdefaults'),
+        setVisTitle: false,
+        visTitle: ''
       },
       legendPositions: [{
         value: 'bottomleft',

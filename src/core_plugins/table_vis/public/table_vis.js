@@ -44,7 +44,9 @@ function TableVisTypeProvider(Private) {
           direction: null
         },
         showTotal: false,
-        totalFunc: 'sum'
+        totalFunc: 'sum',
+        setVisTitle: false,
+        visTitle: ''
       },
       editor: '<table-vis-params></table-vis-params>'
     },
