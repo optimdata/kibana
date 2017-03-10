@@ -1,0 +1,25 @@
+<div>
+    <div class="kuiSideBarFormRow">
+    <label class="kuiSideBarFormRow__label" for="showVisTitle">
+      Set Visualization Title
+    </label>
+    <div class="kuiSideBarFormRow__control">
+      <input class="kuiCheckBox" id="showVisTitle" type="checkbox" ng-model="vis.params.setVisTitle">
+    </div>
+  </div>
+
+  <div class="kuiSideBarFormRow" ng-if="vis.params.setVisTitle">
+    <label class="kuiSideBarFormRow__label" for="visTitle">
+      Title
+    </label>
+    <div class="kuiSideBarFormRow__control">
+      <input
+        id="visTitle"
+        class="kuiInput kuiSideBarInput"
+        ng-model="vis.params.visTitle"
+        ng-required="vis.params.setVisTitle"
+        type="text"
+      >
+    </div>
+  </div>
+</div>

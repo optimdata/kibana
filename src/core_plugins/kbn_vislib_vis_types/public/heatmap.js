@@ -42,7 +42,9 @@ export default function HeatmapVisType(Private) {
             rotate: 0,
             color: '#555'
           }
-        }]
+        }],
+        setVisTitle: false,
+        visTitle: ''
       },
       legendPositions: [{
         value: 'left',

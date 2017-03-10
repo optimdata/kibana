@@ -209,6 +209,10 @@ export function SavedObjectProvider(Promise, Private, Notifier, confirmModalProm
       // Give obj all of the values in _source.fields
       _.assign(this, this._source);
       this.lastSavedTitle = this.title;
+      this.composedTitle = this.title;
+      if (this.vis && this.vis.params && this.vis.params.visTitle) {
+        this.composedTitle = this.title + ' - ' + this.vis.params.visTitle;
+      }
 
       return Promise.try(() => {
         parseSearchSource(meta.searchSourceJSON);
@@ -341,6 +345,10 @@ export function SavedObjectProvider(Promise, Private, Notifier, confirmModalProm
         .then(() => {
           this.isSaving = false;
           this.lastSavedTitle = this.title;
+          this.composedTitle = this.title;
+          if (this.vis && this.vis.params && this.vis.params.visTitle) {
+            this.composedTitle = this.title + ' - ' + this.vis.params.visTitle;
+          }
           return this.id;
         })
         .catch((err) => {

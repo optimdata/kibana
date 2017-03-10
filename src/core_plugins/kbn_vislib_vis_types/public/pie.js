@@ -20,7 +20,9 @@ export default function HistogramVisType(Private) {
         addTooltip: true,
         addLegend: true,
         legendPosition: 'right',
-        isDonut: false
+        isDonut: false,
+        setVisTitle: false,
+        visTitle: ''
       },
       legendPositions: [{
         value: 'left',

@@ -84,6 +84,8 @@ export default function PointSeriesVisType(Private) {
         legendPosition: 'right',
         times: [],
         addTimeMarker: false,
+        setVisTitle: false,
+        visTitle: '',
       },
       positions: ['top', 'left', 'right', 'bottom'],
       chartTypes: [{

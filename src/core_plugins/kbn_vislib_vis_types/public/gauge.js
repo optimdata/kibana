@@ -59,7 +59,9 @@ export default function GaugeVisType(Private) {
             subText: '',
             fontSize: 60,
           }
-        }
+        },
+        setVisTitle: false,
+        visTitle: '',
       },
       gaugeTypes: ['Arc', 'Circle', 'Metric'],
       gaugeColorMode: ['None', 'Labels', 'Background'],

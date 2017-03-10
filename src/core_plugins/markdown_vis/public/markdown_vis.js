@@ -27,6 +27,10 @@ function MarkdownVisProvider(Private) {
     category: VisType.CATEGORY.OTHER,
     template: markdownVisTemplate,
     params: {
+      defaults: {
+        setVisTitle: false,
+        visTitle: ''
+      },
       editor: markdownVisParamsTemplate
     },
     requiresSearch: false,
