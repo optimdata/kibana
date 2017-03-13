@@ -1,7 +1,8 @@
 <div
   class="kuiLocalNav"
-  ng-show="kbnTopNav.isVisible()"
+  ng-show="showTimeFilter || showSearchBar || kbnTopNav.isVisible()"
   data-test-subj="top-nav"
+  style="min-height: 35px;"
 >
   <!-- Top row -->
   <div class="kuiLocalNavRow" ng-show="kbnTopNav.isVisible() || showTimeFilter">
@@ -28,6 +29,7 @@
           tooltip-popup-delay="400"
           tooltip-append-to-body="1"
           data-test-subj="{{menuItem.testId}}"
+          ng-show="kbnTopNav.isVisible()"
         ></div>
 
         <!-- Time-picker "menu item" -->
