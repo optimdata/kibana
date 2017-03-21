@@ -5,7 +5,7 @@
   style="min-height: 35px;"
 >
   <!-- Top row -->
-  <div class="kuiLocalNavRow" ng-show="showTimeFilter">
+  <div class="kuiLocalNavRow" ng-show="kbnTopNav.isVisible() || showTimeFilter">
     <!-- Top left corner slot, e.g. breadcrumbs, title. -->
     <div
       class="kuiLocalNavRow__section"
@@ -51,7 +51,7 @@
     </div>
   </div>
 
-  <div class="kuiLocalNavRow kuiLocalNavRow--secondary" ng-show="showSearchBar">
+  <div class="kuiLocalNavRow kuiLocalNavRow--secondary" ng-show="kbnTopNav.isVisible() || showSearchBar">
     <!-- Bottom row slot, e.g. tabs. -->
     <div data-transclude-slot="bottomRow"></div>
   </div>
