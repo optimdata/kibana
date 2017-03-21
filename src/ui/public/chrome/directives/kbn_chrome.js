@@ -65,6 +65,8 @@ export function kbnChromeProvider(chrome, internals) {
         // and some local values
         chrome.httpActive = $http.pendingRequests;
         $scope.notifList = notify._notifs;
+        $scope.showSearchBar = $location.search().embed && $location.search().showSearchBar;
+        $scope.showTimeFilter = $location.search().embed && $location.search().showTimeFilter;
 
         return chrome;
       }

@@ -1,4 +1,4 @@
-<div ng-show="timefilter.enabled" data-shared-timefilter="{{timefilter.enabled}}" class="kuiLocalMenu" data-test-subj="globalTimepicker">
+<div ng-show="timefilter.enabled || showTimeFilter" data-shared-timefilter="{{timefilter.enabled || showTimeFilter}}" class="kuiLocalMenu" data-test-subj="globalTimepicker">
   <button
     class="kuiLocalMenuItem"
     aria-label="{{ timefilter.refreshInterval.pause ? 'Resume refreshing data' : 'Pause refreshing data' }}"
@@ -15,7 +15,7 @@
   <button
     class="kuiLocalMenuItem navbar-timepicker-auto-refresh-desc"
     ng-class="{'kuiLocalMenuItem-isSelected': kbnTopNav.isCurrent('interval') }"
-    ng-show="timefilter.refreshInterval.value > 0 || kbnTopNav.isCurrent('interval') || kbnTopNav.isCurrent('filter')"
+    ng-show="! showTimeFilter && (timefilter.refreshInterval.value > 0 || kbnTopNav.isCurrent('interval') || kbnTopNav.isCurrent('filter'))"
     ng-click="kbnTopNav.toggle('interval')"
   >
     <span ng-show="timefilter.refreshInterval.value === 0">
