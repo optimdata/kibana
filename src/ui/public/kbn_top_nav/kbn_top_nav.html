@@ -4,7 +4,7 @@
   data-test-subj="top-nav"
 >
   <!-- Top row -->
-  <div class="kuiLocalNavRow">
+  <div class="kuiLocalNavRow" ng-show="kbnTopNav.isVisible() || showTimeFilter">
     <!-- Top left corner slot, e.g. breadcrumbs, title. -->
     <div
       class="kuiLocalNavRow__section"
@@ -49,7 +49,7 @@
     </div>
   </div>
 
-  <div class="kuiLocalNavRow kuiLocalNavRow--secondary">
+  <div class="kuiLocalNavRow kuiLocalNavRow--secondary" ng-show="kbnTopNav.isVisible() || showSearchBar">
     <!-- Bottom row slot, e.g. tabs. -->
     <div data-transclude-slot="bottomRow"></div>
   </div>
