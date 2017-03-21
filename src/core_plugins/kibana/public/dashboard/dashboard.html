@@ -2,10 +2,12 @@
   <!-- Local nav. -->
   <kbn-top-nav name="dashboard" config="topNavMenu">
     <!-- Transcluded elements. -->
-    <div data-transclude-slots>
+    <div data-transclude-slots ng-show="chrome.getVisible() || showSearchBar">
       <!-- Title. -->
       <div
         data-transclude-slot="topLeftCorner"
+        class="kuiLocalTitle"
+        ng-show="chrome.getVisible()"
       >
         <div class="kuiLocalBreadcrumbs" data-test-subj="breadcrumbs">
           <div class="kuiLocalBreadcrumb">
@@ -21,7 +23,7 @@
       <form
         data-transclude-slot="bottomRow"
         class="fullWidth"
-        ng-show="chrome.getVisible()"
+        ng-show="chrome.getVisible() || showSearchBar"
         role="form"
         name="queryInput"
         ng-submit="filterResults()"
