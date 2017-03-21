@@ -309,7 +309,7 @@ app.directive('dashboardApp', function ($injector) {
           });
       }
 
-      $scope.showFilterBar = () => filterBar.getFilters().length > 0 || !dashboardStateManager.getFullScreenMode();
+      $scope.showFilterBar = () => $scope.showSearchBar || filterBar.getFilters().length > 0 || !dashboardStateManager.getFullScreenMode();
 
       $scope.showAddPanel = () => {
         dashboardStateManager.setFullScreenMode(false);

@@ -1,5 +1,5 @@
 <div
-  ng-show="timefilterValues.isAutoRefreshSelectorEnabled || timefilterValues.isTimeRangeSelectorEnabled"
+  ng-show="timefilterValues.isAutoRefreshSelectorEnabled || timefilterValues.isTimeRangeSelectorEnabled || showTimeFilter"
   data-shared-timefilter-from="{{ getSharedTimeFilterFromDate() }}"
   data-shared-timefilter-to="{{ getSharedTimeFilterToDate() }}"
   class="kuiLocalMenu"
@@ -23,7 +23,7 @@
   <button
     class="kuiLocalMenuItem navbar-timepicker-auto-refresh-desc"
     ng-class="{'kuiLocalMenuItem-isSelected': kbnTopNav.isCurrent('interval') }"
-    ng-show="timefilterValues.isAutoRefreshSelectorEnabled"
+    ng-show="! showTimeFilter && timefilterValues.isAutoRefreshSelectorEnabled"
     ng-click="kbnTopNav.toggle('interval')"
   >
     <span ng-show="timefilterValues.refreshInterval.value === 0">

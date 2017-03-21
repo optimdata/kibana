@@ -87,6 +87,8 @@ export function kbnChromeProvider(chrome, internals) {
 
           // Notifications
           $scope.notifList = notify._notifs;
+          $scope.showSearchBar = $location.search().embed && $location.search().showSearchBar;
+          $scope.showTimeFilter = $location.search().embed && $location.search().showTimeFilter;
 
           // Non-scope based code (e.g., React)
 
