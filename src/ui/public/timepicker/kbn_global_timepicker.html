@@ -1,4 +1,4 @@
-<div ng-show="timefilter.enabled" class="kuiLocalMenu" data-test-subj="globalTimepicker">
+<div ng-show="timefilter.enabled && showTimeFilter" class="kuiLocalMenu" data-test-subj="globalTimepicker">
   <div
     class="kuiLocalMenuItem"
     ng-click="toggleRefresh()"
@@ -10,7 +10,7 @@
   <div
     class="kuiLocalMenuItem navbar-timepicker-auto-refresh-desc"
     ng-class="{'kuiLocalMenuItem-isSelected': kbnTopNav.isCurrent('interval') }"
-    ng-show="timefilter.refreshInterval.value > 0 || kbnTopNav.isCurrent('interval') || kbnTopNav.isCurrent('filter')"
+    ng-show="! showTimeFilter && (timefilter.refreshInterval.value > 0 || kbnTopNav.isCurrent('interval') || kbnTopNav.isCurrent('filter'))"
     ng-click="kbnTopNav.toggle('interval')"
   >
     <span ng-show="timefilter.refreshInterval.value === 0">
