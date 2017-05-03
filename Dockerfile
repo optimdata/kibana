@@ -40,11 +40,11 @@ RUN set -x \
 # https://www.elastic.co/guide/en/kibana/5.0/deb.html
 RUN echo 'deb https://artifacts.elastic.co/packages/5.x/apt stable main' > /etc/apt/sources.list.d/kibana.list
 
-ENV KIBANA_VERSION 5.2.3
+ENV KIBANA_VERSION 5.3.2
 
-COPY ./target/kibana-5.2.3-SNAPSHOT-amd64.deb /opt/
+COPY ./target/kibana-5.3.2-SNAPSHOT-amd64.deb /opt/
 
-RUN dpkg -i /opt/kibana-5.2.3-SNAPSHOT-amd64.deb
+RUN dpkg -i /opt/kibana-5.3.2-SNAPSHOT-amd64.deb
 
 RUN set -x \
 # the default "server.host" is "localhost" in 5+
