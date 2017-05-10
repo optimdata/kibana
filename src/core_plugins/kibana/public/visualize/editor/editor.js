@@ -211,7 +211,7 @@ function VisEditor($rootScope, $scope, $route, timefilter, AppState, $window, kb
       $scope.responseValueAggs = null;
       try {
         $scope.responseValueAggs = editableVis.aggs.getResponseAggs().filter(function (agg) {
-          return _.get(agg, 'schema.group') === 'metrics';
+          return _.get(agg, 'schema.group') === 'metrics' && _.get(agg, 'type.supportsOrderBy');
         });
       }
       // this can fail when the agg.type is changed but the

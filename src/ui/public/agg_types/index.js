@@ -29,6 +29,7 @@ import { AggTypesMetricsBucketSumProvider } from 'ui/agg_types/metrics/bucket_su
 import { AggTypesMetricsBucketAvgProvider } from 'ui/agg_types/metrics/bucket_avg';
 import { AggTypesMetricsBucketMinProvider } from 'ui/agg_types/metrics/bucket_min';
 import { AggTypesMetricsBucketMaxProvider } from 'ui/agg_types/metrics/bucket_max';
+import { AggTypesMetricsScriptedMetricsProvider } from 'ui/agg_types/metrics/scripted_metrics';
 import 'ui/directives/validate_agg';
 
 export function AggTypesIndexProvider(Private) {
@@ -54,7 +55,8 @@ export function AggTypesIndexProvider(Private) {
       Private(AggTypesMetricsBucketSumProvider),
       Private(AggTypesMetricsBucketMinProvider),
       Private(AggTypesMetricsBucketMaxProvider),
-      Private(AggTypesMetricsGeoCentroidProvider)
+      Private(AggTypesMetricsGeoCentroidProvider),
+      Private(AggTypesMetricsScriptedMetricsProvider),
     ],
     buckets: [
       Private(AggTypesBucketsDateHistogramProvider),
