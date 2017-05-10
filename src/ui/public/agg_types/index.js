@@ -51,6 +51,7 @@ import { bucketSumMetricAgg } from './metrics/bucket_sum';
 import { bucketAvgMetricAgg } from './metrics/bucket_avg';
 import { bucketMinMetricAgg } from './metrics/bucket_min';
 import { bucketMaxMetricAgg } from './metrics/bucket_max';
+import { scriptedMetricsAgg } from './metrics/scripted_metrics';
 
 const aggs = {
   metrics: [
@@ -74,7 +75,8 @@ const aggs = {
     bucketMinMetricAgg,
     bucketMaxMetricAgg,
     geoBoundsMetricAgg,
-    geoCentroidMetricAgg
+    geoCentroidMetricAgg,
+    scriptedMetricsAgg,
   ],
   buckets: [
     dateHistogramBucketAgg,

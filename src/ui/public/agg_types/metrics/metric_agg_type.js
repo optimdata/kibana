@@ -71,4 +71,10 @@ MetricAggType.prototype.isScalable = function () {
   return false;
 };
 
+/**
+ * Specify if this metric aggregation may be used in orderBy clauses of sub-aggs
+ * @type {boolean}
+ */
+MetricAggType.prototype.supportsOrderBy = true;
+
 export { MetricAggType };
