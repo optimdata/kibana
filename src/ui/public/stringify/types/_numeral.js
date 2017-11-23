@@ -6,7 +6,17 @@ import { BoundToConfigObjProvider } from 'ui/bound_to_config_obj';
 export function StringifyTypesNumeralProvider(Private) {
   const FieldFormat = Private(IndexPatternsFieldFormatProvider);
   const BoundToConfigObj = Private(BoundToConfigObjProvider);
-  const numeral = require('numeral')();
+  const numeral = require('numeral');
+  const numeralFR = require('@elastic/numeral/languages/fr');
+  const numeralDE = require('@elastic/numeral/languages/de');
+
+  numeral.language('fr', numeralFR);
+  numeral.language('de', numeralDE);
+  let language = navigator.language || navigator.browserLanguage || navigator.userLanguage || navigator.systemLanguage || '';
+  language = language.split('-')[0];
+  if (language === 'fr' || language === 'de') {
+    numeral.language(language);
+  }
 
   _.class(Numeral).inherits(FieldFormat);
   function Numeral(params) {
@@ -21,8 +31,7 @@ export function StringifyTypesNumeralProvider(Private) {
     }
 
     if (isNaN(val)) return '';
-
-    return numeral.set(val).format(this.param('pattern'));
+    return numeral(val).format(this.param('pattern'));
   };
 
 
