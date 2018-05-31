@@ -107,7 +107,7 @@ app.directive('dashboardApp', function ($injector) {
 
       // The 'previouslyStored' check is so we only update the time filter on dashboard open, not during
       // normal cross app navigation.
-      if (dashboardStateManager.getIsTimeSavedWithDashboard() && !getAppState.previouslyStored()) {
+      if (dashboardStateManager.getIsTimeSavedWithDashboard()) {
         dashboardStateManager.syncTimefilterWithDashboard(timefilter, config.get('timepicker:quickRanges'));
       }
 
