@@ -282,6 +282,9 @@ app.directive('dashboardApp', function ($injector) {
       const navActions = {};
       navActions[TopNavIds.EXIT_EDIT_MODE] = () => onChangeViewMode(DashboardViewMode.VIEW);
       navActions[TopNavIds.ENTER_EDIT_MODE] = () => onChangeViewMode(DashboardViewMode.EDIT);
+      navActions[TopNavIds.PRINT] = () => {
+        window.print();
+      };
       navActions[TopNavIds.CLONE] = () => {
         const currentTitle = $scope.model.title;
         const onClone = (newTitle) => {

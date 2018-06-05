@@ -2,6 +2,27 @@
 @import (reference) "~ui/styles/mixins";
 @import "~ui/styles/local_search.less";
 
+@page {
+  size: A4;
+  margin: 0;
+}
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  dashboard-grid, dashboard-grid * {
+    visibility: visible;
+  }
+  dashboard-grid {
+    width: 21cm;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+}
+
+
 .tab-dashboard {
   background-color: @dashboard-bg;
 }

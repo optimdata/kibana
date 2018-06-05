@@ -13,6 +13,7 @@ export function getTopNavConfig(dashboardMode, actions) {
     case DashboardViewMode.VIEW:
       return [
         getShareConfig(),
+        getPrintConfig(actions[TopNavIds.PRINT]),
         getCloneConfig(actions[TopNavIds.CLONE]),
         getEditConfig(actions[TopNavIds.ENTER_EDIT_MODE])];
     case DashboardViewMode.EDIT:
@@ -96,6 +97,18 @@ function getShareConfig() {
     description: 'Share Dashboard',
     testId: 'dashboardShareButton',
     template: require('plugins/kibana/dashboard/top_nav/share.html')
+  };
+}
+
+/**
+ * @returns {kbnTopNavConfig}
+ */
+function getPrintConfig(action) {
+  return {
+    key: TopNavIds.PRINT,
+    description: 'Print Dashboard',
+    testId: 'dashboardPrintButton',
+    run: action,
   };
 }
 
