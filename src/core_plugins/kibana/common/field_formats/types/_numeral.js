@@ -59,7 +59,13 @@ export function createNumeralFormat(FieldFormat, opts) {
 
       const previousLocale = numeral.language();
       const defaultLocale = this.getConfig && this.getConfig('format:number:defaultLocale') || 'en';
-      numeral.language(defaultLocale);
+      let language = navigator.language || navigator.browserLanguage || navigator.userLanguage || navigator.systemLanguage || '';
+      language = language.split('-')[0];
+      if (language === 'fr' || language === 'de') {
+        numeral.language(language);
+      } else {
+        numeral.language(defaultLocale);
+      }
 
       const formatted = numeralInst.set(val).format(this.param('pattern'));
 
