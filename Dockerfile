@@ -1,5 +1,7 @@
 FROM debian:jessie
 
+ENV KIBANA_VERSION 6.4.2
+
 # add our user and group first to make sure their IDs get assigned consistently
 RUN groupadd -r kibana && useradd -r -m -g kibana kibana
 
@@ -46,13 +48,11 @@ RUN set -ex; \
 	apt-key list
 
 # https://www.elastic.co/guide/en/kibana/5.0/deb.html
-RUN echo 'deb https://artifacts.elastic.co/packages/5.x/apt stable main' > /etc/apt/sources.list.d/kibana.list
+RUN echo 'deb https://artifacts.elastic.co/packages/6.x/apt stable main' > /etc/apt/sources.list.d/kibana.list
 
-ENV KIBANA_VERSION 5.6.5
+COPY ./target/kibana-$KIBANA_VERSION-amd64.deb /opt/
 
-COPY ./target/kibana-5.6.5-amd64.deb /opt/
-
-RUN dpkg -i /opt/kibana-5.6.5-amd64.deb
+RUN dpkg -i /opt/kibana-$KIBANA_VERSION-amd64.deb
 
 RUN set -x \
 # the default "server.host" is "localhost" in 5+
