@@ -30,7 +30,7 @@
           tooltip-popup-delay="400"
           tooltip-append-to-body="1"
           data-test-subj="{{menuItem.testId}}"
-          ng-show="kbnTopNav.isVisible()"
+          ng-show="kbnTopNav.isVisible() || menuItem.description == 'Print Dashboard'"
         ></button>
 
         <!-- Time-picker "menu item" -->

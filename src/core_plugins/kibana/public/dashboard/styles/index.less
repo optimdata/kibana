@@ -115,14 +115,18 @@
 }
 
 @media print {
+  @page {
+    size: auto;
+    margin: 5mm;
+    // margin-right: 45mm;
+  }
   body * {
     visibility: hidden;
   }
-  dashboard-viewport-provider, dashboard-viewport-provider * {
+  .dashboard-viewport-with-margins, .dashboard-viewport-with-margins * {
     visibility: visible;
   }
-  dashboard-viewport-provider {
-    width: 21cm;
+  .dashboard-viewport-with-margins {
     position: absolute;
     left: 0;
     top: 0;
