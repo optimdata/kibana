@@ -327,6 +327,9 @@ app.directive('dashboardApp', function ($injector) {
       navActions[TopNavIds.PRINT] = () => {
         window.print();
       };
+      navActions[TopNavIds.SHARE_INUSE] = () => {
+        parent.postMessage({ name: 'share' }, '*');
+      };
       navActions[TopNavIds.SAVE] = () => {
         const currentTitle = dashboardStateManager.getTitle();
         const currentDescription = dashboardStateManager.getDescription();
