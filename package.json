@@ -113,7 +113,7 @@
     "@elastic/eui": "6.10.5",
     "@elastic/filesaver": "1.1.2",
     "@elastic/good": "8.1.1-kibana2",
-    "@elastic/numeral": "2.3.2",
+    "@elastic/numeral": "optimdata/numeral-js#8468121409e3f821b8fb01f86cf51567645e390e",
     "@elastic/ui-ace": "0.2.3",
     "@kbn/babel-code-parser": "1.0.0",
     "@kbn/babel-preset": "1.0.0",
