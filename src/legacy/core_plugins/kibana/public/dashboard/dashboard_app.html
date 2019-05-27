@@ -29,7 +29,7 @@
         </div>
 
       <!-- Search. -->
-      <div ng-show="chrome.getVisible()" class="fullWidth" data-transclude-slot="bottomRow">
+      <div ng-show="chrome.getVisible() || showSearchBar" class="fullWidth" data-transclude-slot="bottomRow">
         <query-bar
           query="model.query"
           app-name="'dashboard'"

@@ -57,7 +57,7 @@ export function kbnChromeProvider(chrome, internals) {
         },
 
         controllerAs: 'chrome',
-        controller($scope, $rootScope, Private, config) {
+        controller($scope, $rootScope, $location, Private, config) {
           config.watch('k7design', (val) => $scope.k7design = val);
 
           const getUnhashableStates = Private(getUnhashableStatesProvider);
@@ -81,6 +81,8 @@ export function kbnChromeProvider(chrome, internals) {
 
           // Notifications
           $scope.notifList = notify._notifs;
+          $scope.showSearchBar = $location.search().embed && $location.search().showSearchBar;
+          $scope.showTimeFilter = $location.search().embed && $location.search().showTimeFilter;
 
           // Non-scope based code (e.g., React)
 
