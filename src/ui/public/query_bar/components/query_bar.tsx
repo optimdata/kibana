@@ -539,7 +539,6 @@ export class QueryBarUI extends Component<Props, State> {
     const classes = classNames('kbnQueryBar', {
       'kbnQueryBar--withDatePicker': this.props.showDatePicker,
     });
-
     return (
       <EuiFlexGroup
         className={classes}
@@ -623,7 +622,7 @@ export class QueryBarUI extends Component<Props, State> {
   private renderUpdateButton() {
     const button = (
       <EuiSuperUpdateButton
-        needsUpdate={this.isDirty()}
+        needsUpdate={false}
         isDisabled={this.state.isDateRangeInvalid}
         onClick={this.onClickSubmitButton}
         data-test-subj="querySubmitButton"
