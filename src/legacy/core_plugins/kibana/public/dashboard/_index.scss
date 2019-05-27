@@ -42,3 +42,23 @@
   @import 'src/ui/public/vis/index';
   @import 'src/ui/public/vislib/index';
 }
+
+
+@media print {
+  @page {
+    size: A4;
+    margin: 5mm;
+  }
+  body * {
+    visibility: hidden;
+  }
+  .dshDashboardViewport-withMargins, .dshDashboardViewport-withMargins * {
+    visibility: visible;
+  }
+  .dshDashboardViewport-withMargins {
+    width: 20cm !important;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+}

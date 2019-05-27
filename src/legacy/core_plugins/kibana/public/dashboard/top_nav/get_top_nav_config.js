@@ -40,6 +40,7 @@ export function getTopNavConfig(dashboardMode, actions, hideWriteControls) {
           : [
             getFullScreenConfig(actions[TopNavIds.FULL_SCREEN]),
             getShareConfig(actions[TopNavIds.SHARE]),
+            getPrintConfig(actions[TopNavIds.PRINT]),
             getCloneConfig(actions[TopNavIds.CLONE]),
             getEditConfig(actions[TopNavIds.ENTER_EDIT_MODE]),
             getDocumentationConfig(actions[TopNavIds.DOCUMENTATION]),
@@ -192,6 +193,18 @@ function getDocumentationConfig(action) {
     description: i18n.translate('kbn.dashboard.topNav.documentationButtonDescription', {
       defaultMessage: 'Documentation',
     }),
+    run: action,
+  };
+}
+
+/**
+ * @returns {kbnTopNavConfig}
+ */
+function getPrintConfig(action) {
+  return {
+    key: TopNavIds.PRINT,
+    description: 'Print Dashboard',
+    testId: 'dashboardPrintButton',
     run: action,
   };
 }
