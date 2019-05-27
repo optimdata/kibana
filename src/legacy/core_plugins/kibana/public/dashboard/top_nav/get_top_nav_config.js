@@ -39,8 +39,9 @@ export function getTopNavConfig(dashboardMode, actions, hideWriteControls) {
           ]
           : [
             getFullScreenConfig(actions[TopNavIds.FULL_SCREEN]),
-            getShareConfig(actions[TopNavIds.SHARE]),
+            // getShareConfig(actions[TopNavIds.SHARE]),
             getPrintConfig(actions[TopNavIds.PRINT]),
+            getShareInUseConfig(actions[TopNavIds.SHARE_INUSE]),
             getCloneConfig(actions[TopNavIds.CLONE]),
             getEditConfig(actions[TopNavIds.ENTER_EDIT_MODE]),
             getDocumentationConfig(actions[TopNavIds.DOCUMENTATION]),
@@ -205,6 +206,15 @@ function getPrintConfig(action) {
     key: TopNavIds.PRINT,
     description: 'Print Dashboard',
     testId: 'dashboardPrintButton',
+    run: action,
+  };
+}
+
+function getShareInUseConfig(action) {
+  return {
+    key: 'Share',
+    description: 'ShareInUse',
+    // testId: 'dashboardPrintButton',
     run: action,
   };
 }
