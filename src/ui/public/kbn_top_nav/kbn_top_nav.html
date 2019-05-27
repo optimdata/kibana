@@ -1,10 +1,10 @@
 <div
   class="kuiLocalNav"
-  ng-show="kbnTopNav.isVisible()"
+  ng-show="showTimeFilter || showSearchBar || kbnTopNav.isVisible()"
   data-test-subj="top-nav"
 >
   <!-- Top row -->
-  <div class="kuiLocalNavRow">
+  <div class="kuiLocalNavRow" ng-show="kbnTopNav.isVisible() || showTimeFilter">
     <!-- Top left corner slot, e.g. breadcrumbs, title. -->
     <div
       class="kuiLocalNavRow__section"
@@ -29,6 +29,7 @@
           tooltip-popup-delay="400"
           tooltip-append-to-body="1"
           data-test-subj="{{menuItem.testId}}"
+          ng-show="kbnTopNav.isVisible()"
         ></button>
 
         <!-- Time-picker "menu item" -->
@@ -54,7 +55,7 @@
     </div>
   </div>
 
-  <div class="kuiLocalNavRow kuiLocalNavRow--secondary">
+  <div class="kuiLocalNavRow kuiLocalNavRow--secondary" ng-show="kbnTopNav.isVisible() || showSearchBar">
     <!-- Bottom row slot, e.g. tabs. -->
     <div data-transclude-slot="bottomRow"></div>
   </div>
