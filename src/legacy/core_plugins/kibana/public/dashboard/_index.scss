@@ -52,10 +52,14 @@
   body * {
     visibility: hidden;
   }
-  .dshDashboardViewport-withMargins, .dshDashboardViewport-withMargins * {
+  .dshDashboardViewport-withMargins, .dshDashboardViewport,
+  .dshDashboardViewport-withMargins *, .dshDashboardViewport * {
     visibility: visible;
   }
-  .dshDashboardViewport-withMargins {
+  .app-wrapper {
+    left: 0 !important;
+  }
+  .dshDashboardViewport-withMargins, .dshDashboardViewport {
     width: 20cm !important;
     position: absolute;
     left: 0;
