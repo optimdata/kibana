@@ -136,16 +136,16 @@ export function getUiSettingDefaults() {
       name: i18n.translate('kbn.advancedSettings.dateFormat.timezoneTitle', {
         defaultMessage: 'Timezone for date formatting',
       }),
-      value: 'Browser',
+      value: 'InUse',
       description: i18n.translate('kbn.advancedSettings.dateFormat.timezoneText', {
         defaultMessage:
           'Which timezone should be used. {defaultOption} will use the timezone detected by your browser.',
         values: {
-          defaultOption: '"Browser"',
+          defaultOption: '"InUse"',
         },
       }),
       type: 'select',
-      options: ['Browser', ...moment.tz.names()]
+      options: ['InUse', 'Browser', ...moment.tz.names()]
     },
     'dateFormat:scaled': {
       name: i18n.translate('kbn.advancedSettings.dateFormat.scaledTitle', {
