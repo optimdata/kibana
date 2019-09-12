@@ -49,7 +49,7 @@ function generator({ artifactTarball, versionTag, license  }) {
   EXPOSE 5601
   
   # Add Reporting dependencies.
-  RUN yum update -y && yum install -y fontconfig freetype && yum clean all
+  RUN yum update -y && yum install -y fontconfig freetype wget && yum clean all
   
   # Bring in Kibana from the initial stage.
   COPY --from=prep_files --chown=1000:0 /usr/share/kibana /usr/share/kibana
