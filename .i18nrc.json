@@ -49,6 +49,8 @@
     "src/core/public/fatal_errors/get_error_info.ts",
     "src/ui/ui_render/bootstrap/app_bootstrap.js",
     "src/ui/ui_render/ui_render_mixin.js",
+    "x-pack/plugins/infra",
+    "src/core",
     "x-pack/plugins/infra/public/graphql/types.ts",
     "x-pack/plugins/infra/public/utils/loading_state/loading_result.ts",
     "x-pack/plugins/infra/server/graphql/types.ts",
