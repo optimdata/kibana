@@ -204,7 +204,12 @@ function getDocumentationConfig(action) {
 function getPrintConfig(action) {
   return {
     key: TopNavIds.PRINT,
-    description: 'Print Dashboard',
+    label: i18n.translate('kbn.dashboard.topNav.printButtonLabel', {
+      defaultMessage: 'Print'
+    }),
+    description: i18n.translate('kbn.dashboard.topNav.printButtonDescription', {
+      defaultMessage: 'Print Dashboard'
+    }),
     testId: 'dashboardPrintButton',
     run: action,
   };

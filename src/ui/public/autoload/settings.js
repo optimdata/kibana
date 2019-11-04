@@ -24,6 +24,7 @@
  * - dateFormat:dow (meaning the Kibana configured start of the week will be used in your plugin)
  */
 
+import './locale';
 import moment from 'moment-timezone';
 import chrome from '../chrome';
 
