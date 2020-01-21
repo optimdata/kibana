@@ -71,7 +71,12 @@
       aria-label="Current time range is {{timefilterValues.display.time}}"
       data-test-subj="globalTimepickerRange"
     >
-      {{timefilterValues.display.time}}
+      <span ng-hide="timefilterValues.display.time.key && timefilterValues.display.time.defaultMessage">
+        {{ timefilterValues.display.time }}
+      </span>
+      <span ng-if="timefilterValues.display.time.key && timefilterValues.display.time.defaultMessage">
+        {{ timefilterValues.display.time.key | i18n : {defaultMessage: timeFilterValues.display.time.defaultMessage} }}
+      </span>
     </span>
   </button>
 

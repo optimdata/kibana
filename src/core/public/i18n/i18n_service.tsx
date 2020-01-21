@@ -28,11 +28,11 @@ import { I18nProvider } from '@kbn/i18n/react';
  */
 export class I18nService {
   public start() {
-    const mapping = {
+    const getMapping = () => ({
       'euiTablePagination.rowsPerPage': i18n.translate('core.euiTablePagination.rowsPerPage', {
         defaultMessage: 'Rows per page',
       }),
-    };
+    });
 
     return {
       /**
@@ -40,6 +40,7 @@ export class I18nService {
        * and is supposed to be used as the topmost component for any i18n-compatible React tree.
        */
       Context: function I18nContext({ children }: { children: React.ReactNode }) {
+        const mapping = getMapping();
         return (
           <I18nProvider>
             <EuiContext i18n={{ mapping }}>{children}</EuiContext>

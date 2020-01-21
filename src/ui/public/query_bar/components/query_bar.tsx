@@ -45,6 +45,7 @@ import { EuiFieldText, EuiFlexGroup, EuiFlexItem, EuiOutsideClickDetector } from
 import { EuiSuperDatePicker, EuiSuperUpdateButton } from '@elastic/eui';
 
 import { InjectedIntl, injectI18n } from '@kbn/i18n/react';
+import {i18n} from '@kbn/i18n'
 
 const KEY_CODES = {
   LEFT: 37,
@@ -660,7 +661,7 @@ export class QueryBarUI extends Component<Props, State> {
         return {
           start: from,
           end: to,
-          label: display,
+          label: i18n.translate(display.key, {defaultMessage: display.defaultMessage}),
         };
       });
 

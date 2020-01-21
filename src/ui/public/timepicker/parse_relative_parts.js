@@ -20,7 +20,7 @@
 import dateMath from '@elastic/datemath';
 import moment from 'moment';
 import _ from 'lodash';
-import { relativeOptions } from './relative_options';
+import { getRelativeOptions } from './relative_options';
 
 export function parseRelativeString(part) {
   let results = {};
@@ -46,7 +46,7 @@ export function parseRelativeString(part) {
   } else {
     results = { count: 0, unit: 's', round: false };
     const duration = moment.duration(moment().diff(dateMath.parse(part)));
-    const units = _.pluck(_.clone(relativeOptions).reverse(), 'value')
+    const units = _.pluck(_.clone(getRelativeOptions()).reverse(), 'value')
       .filter(s => /^[smhdwMy]$/.test(s));
     let unitOp = '';
     for (let i = 0; i < units.length; i++) {

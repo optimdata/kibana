@@ -17,23 +17,92 @@
  * under the License.
  */
 
-import { i18n } from '@kbn/i18n';
+import { i18n } from '@kbn/i18n'
 
-export const relativeOptions = [
-  { text: i18n.translate('common.ui.timepicker.relOpts.secondsAgo', { defaultMessage: 'Seconds ago' }), value: 's' },
-  { text: i18n.translate('common.ui.timepicker.relOpts.minutesAgo', { defaultMessage: 'Minutes ago' }), value: 'm' },
-  { text: i18n.translate('common.ui.timepicker.relOpts.hoursAgo', { defaultMessage: 'Hours ago' }), value: 'h' },
-  { text: i18n.translate('common.ui.timepicker.relOpts.daysAgo', { defaultMessage: 'Days ago' }), value: 'd' },
-  { text: i18n.translate('common.ui.timepicker.relOpts.weeksAgo', { defaultMessage: 'Weeks ago' }), value: 'w' },
-  { text: i18n.translate('common.ui.timepicker.relOpts.monthsAgo', { defaultMessage: 'Months ago' }), value: 'M' },
-  { text: i18n.translate('common.ui.timepicker.relOpts.yearsAgo', { defaultMessage: 'Years ago' }), value: 'y' },
+export const getRelativeOptions = () => [
+  {
+    text: i18n.translate('common.ui.timepicker.relOpts.secondsAgo', {
+      defaultMessage: 'Seconds ago',
+    }),
+    value: 's',
+  },
+  {
+    text: i18n.translate('common.ui.timepicker.relOpts.minutesAgo', {
+      defaultMessage: 'Minutes ago',
+    }),
+    value: 'm',
+  },
+  {
+    text: i18n.translate('common.ui.timepicker.relOpts.hoursAgo', {
+      defaultMessage: 'Hours ago',
+    }),
+    value: 'h',
+  },
+  {
+    text: i18n.translate('common.ui.timepicker.relOpts.daysAgo', {
+      defaultMessage: 'Days ago',
+    }),
+    value: 'd',
+  },
+  {
+    text: i18n.translate('common.ui.timepicker.relOpts.weeksAgo', {
+      defaultMessage: 'Weeks ago',
+    }),
+    value: 'w',
+  },
+  {
+    text: i18n.translate('common.ui.timepicker.relOpts.monthsAgo', {
+      defaultMessage: 'Months ago',
+    }),
+    value: 'M',
+  },
+  {
+    text: i18n.translate('common.ui.timepicker.relOpts.yearsAgo', {
+      defaultMessage: 'Years ago',
+    }),
+    value: 'y',
+  },
 
-  { text: i18n.translate('common.ui.timepicker.relOpts.secondsFromNow', { defaultMessage: 'Seconds from now' }), value: 's+' },
-  { text: i18n.translate('common.ui.timepicker.relOpts.minutesFromNow', { defaultMessage: 'Minutes from now' }), value: 'm+' },
-  { text: i18n.translate('common.ui.timepicker.relOpts.hoursFromNow', { defaultMessage: 'Hours from now' }), value: 'h+' },
-  { text: i18n.translate('common.ui.timepicker.relOpts.daysFromNow', { defaultMessage: 'Days from now' }), value: 'd+' },
-  { text: i18n.translate('common.ui.timepicker.relOpts.weeksFromNow', { defaultMessage: 'Weeks from now' }), value: 'w+' },
-  { text: i18n.translate('common.ui.timepicker.relOpts.monthsFromNow', { defaultMessage: 'Months from now' }), value: 'M+' },
-  { text: i18n.translate('common.ui.timepicker.relOpts.yearsFromNow', { defaultMessage: 'Years from now' }), value: 'y+' },
-
-];
+  {
+    text: i18n.translate('common.ui.timepicker.relOpts.secondsFromNow', {
+      defaultMessage: 'Seconds from now',
+    }),
+    value: 's+',
+  },
+  {
+    text: i18n.translate('common.ui.timepicker.relOpts.minutesFromNow', {
+      defaultMessage: 'Minutes from now',
+    }),
+    value: 'm+',
+  },
+  {
+    text: i18n.translate('common.ui.timepicker.relOpts.hoursFromNow', {
+      defaultMessage: 'Hours from now',
+    }),
+    value: 'h+',
+  },
+  {
+    text: i18n.translate('common.ui.timepicker.relOpts.daysFromNow', {
+      defaultMessage: 'Days from now',
+    }),
+    value: 'd+',
+  },
+  {
+    text: i18n.translate('common.ui.timepicker.relOpts.weeksFromNow', {
+      defaultMessage: 'Weeks from now',
+    }),
+    value: 'w+',
+  },
+  {
+    text: i18n.translate('common.ui.timepicker.relOpts.monthsFromNow', {
+      defaultMessage: 'Months from now',
+    }),
+    value: 'M+',
+  },
+  {
+    text: i18n.translate('common.ui.timepicker.relOpts.yearsFromNow', {
+      defaultMessage: 'Years from now',
+    }),
+    value: 'y+',
+  },
+]

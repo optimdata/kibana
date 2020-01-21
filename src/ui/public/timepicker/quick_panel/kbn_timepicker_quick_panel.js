@@ -17,9 +17,10 @@
  * under the License.
  */
 
-import _ from 'lodash';
-import template from './kbn_timepicker_quick_panel.html';
-import { uiModules } from '../../modules';
+import _ from 'lodash'
+import template from './kbn_timepicker_quick_panel.html'
+import { uiModules } from '../../modules'
+import { i18n } from '@kbn/i18n'
 
 const module = uiModules.get('ui/timepicker');
 
@@ -31,9 +32,18 @@ module.directive('kbnTimepickerQuickPanel', function (config) {
       setQuick: '&'
     },
     template,
-    controller: function ($scope) {
-      const quickRanges = config.get('timepicker:quickRanges');
-      $scope.quickLists = _(quickRanges).groupBy('section').values().value();
-    }
-  };
-});
+    controller: function($scope) {
+      const quickRanges = config.get('timepicker:quickRanges')
+      $scope.quickLists = _(quickRanges)
+        .map(qr => ({
+          ...qr,
+          display: i18n.translate(qr.display.key, {
+            defaultMessage: qr.display.defaultMessage,
+          }),
+        }))
+        .groupBy('section')
+        .values()
+        .value()
+    },
+  }
+})

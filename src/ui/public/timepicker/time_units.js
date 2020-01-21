@@ -17,15 +17,28 @@
  * under the License.
  */
 
-import { i18n } from '@kbn/i18n';
+import { i18n } from '@kbn/i18n'
 
-export const timeUnits = {
-  s: i18n.translate('common.ui.timepicker.units.second', { defaultMessage: 'second' }),
-  m: i18n.translate('common.ui.timepicker.units.minute', { defaultMessage: 'minute' }),
-  h: i18n.translate('common.ui.timepicker.units.hour', { defaultMessage: 'hour' }),
-  d: i18n.translate('common.ui.timepicker.units.day', { defaultMessage: 'day' }),
-  w: i18n.translate('common.ui.timepicker.units.week', { defaultMessage: 'week' }),
-  M: i18n.translate('common.ui.timepicker.units.month', { defaultMessage: 'month' }),
-  y: i18n.translate('common.ui.timepicker.units.year', { defaultMessage: 'year' })
-};
-
+export const getTimeUnits = () => ({
+  s: i18n.translate('common.ui.timepicker.units.second', {
+    defaultMessage: 'second',
+  }),
+  m: i18n.translate('common.ui.timepicker.units.minute', {
+    defaultMessage: 'minute',
+  }),
+  h: i18n.translate('common.ui.timepicker.units.hour', {
+    defaultMessage: 'hour',
+  }),
+  d: i18n.translate('common.ui.timepicker.units.day', {
+    defaultMessage: 'day',
+  }),
+  w: i18n.translate('common.ui.timepicker.units.week', {
+    defaultMessage: 'week',
+  }),
+  M: i18n.translate('common.ui.timepicker.units.month', {
+    defaultMessage: 'month',
+  }),
+  y: i18n.translate('common.ui.timepicker.units.year', {
+    defaultMessage: 'year',
+  }),
+})

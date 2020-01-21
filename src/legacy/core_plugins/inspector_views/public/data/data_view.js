@@ -173,13 +173,18 @@ class DataViewComponent extends Component {
 }
 
 const DataView = {
-  title: i18n.translate('inspectorViews.data.dataTitle', {
+  /*title: i18n.translate('inspectorViews.data.dataTitle', {
     defaultMessage: 'Data'
-  }),
+  }),*/
+  title: { key: 'inspectorViews.data.dataTitle', defaultMessage: 'Data' },
   order: 10,
-  help: i18n.translate('inspectorViews.data.dataDescriptionTooltip', {
+  /*help: i18n.translate('inspectorViews.data.dataDescriptionTooltip', {
     defaultMessage: 'View the data behind the visualization'
-  }),
+  }),*/
+  help: {
+    key: 'inspectorViews.data.dataDescriptionTooltip',
+    defaultMessage: 'View the data behind the visualization',
+  },
   shouldShow(adapters) {
     return Boolean(adapters.data);
   },

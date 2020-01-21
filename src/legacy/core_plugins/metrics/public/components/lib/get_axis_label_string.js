@@ -17,10 +17,10 @@
  * under the License.
  */
 
-import { relativeOptions } from '../../../../../../ui/public/timepicker/relative_options';
-import _ from 'lodash';
-import moment from 'moment';
-import { i18n } from '@kbn/i18n';
+import { getRelativeOptions } from '../../../../../../ui/public/timepicker/relative_options'
+import _ from 'lodash'
+import moment from 'moment'
+import { i18n } from '@kbn/i18n'
 
 const unitLookup = {
   s: i18n.translate('tsvb.axisLabelOptions.secondsLabel', { defaultMessage: 'seconds' }),
@@ -32,9 +32,11 @@ const unitLookup = {
   y: i18n.translate('tsvb.axisLabelOptions.yearsLabel', { defaultMessage: 'years' })
 };
 export function getAxisLabelString(interval) {
-  const units = _.pluck(_.clone(relativeOptions).reverse(), 'value')
-    .filter(s => /^[smhdwMy]$/.test(s));
-  const duration = moment.duration(interval, 'ms');
+  const units = _.pluck(
+    _.clone(getRelativeOptions()).reverse(),
+    'value',
+  ).filter(s => /^[smhdwMy]$/.test(s))
+  const duration = moment.duration(interval, 'ms')
   for (let i = 0; i < units.length; i++) {
     const as = duration.as(units[i]);
     if (Math.abs(as) > 1) {

@@ -17,9 +17,10 @@
  * under the License.
  */
 
-import { FormattedMessage } from '@kbn/i18n/react';
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import { i18n } from '@kbn/i18n'
+import { FormattedMessage } from '@kbn/i18n/react'
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
 import {
   EuiButtonEmpty,
@@ -55,11 +56,15 @@ class InspectorViewChooser extends Component {
           this.props.onViewSelected(view);
           this.closeSelector();
         }}
-        toolTipContent={view.help}
+        toolTipContent={i18n.translate(view.help.key, {
+          defaultMessage: view.help.defaultMessage,
+        })}
         toolTipPosition="left"
-        data-test-subj={`inspectorViewChooser${view.title}`}
+        data-test-subj={`inspectorViewChooser${view.title.key}`}
       >
-        {view.title}
+        {i18n.translate(view.title.key, {
+          defaultMessage: view.title.defaultMessage,
+        })}
       </EuiContextMenuItem>
     );
   }
@@ -76,7 +81,11 @@ class InspectorViewChooser extends Component {
         <FormattedMessage
           id="common.ui.inspector.view"
           defaultMessage="View: {viewName}"
-          values={{ viewName: this.props.selectedView.title }}
+          values={{
+            viewName: i18n.translate(this.props.selectedView.title.key, {
+              defaultMessage: this.props.selectedView.title.defaultMessage,
+            }),
+          }}
         />
       </EuiButtonEmpty>
     );
@@ -86,12 +95,18 @@ class InspectorViewChooser extends Component {
     return (
       <EuiToolTip
         position="bottom"
-        content={this.props.selectedView.help}
+        content={i18n.translate(this.props.selectedView.help.key, {
+          defaultMessage: this.props.selectedView.help.defaultMessage,
+        })}
       >
         <FormattedMessage
           id="common.ui.inspector.view"
           defaultMessage="View: {viewName}"
-          values={{ viewName: this.props.selectedView.title }}
+          values={{
+            viewName: i18n.translate(this.props.selectedView.title.key, {
+              defaultMessage: this.props.selectedView.title.defaultMessage,
+            }),
+          }}
         />
       </EuiToolTip>
     );

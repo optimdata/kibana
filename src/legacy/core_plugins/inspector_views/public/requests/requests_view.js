@@ -162,13 +162,21 @@ RequestsViewComponent.propTypes = {
 };
 
 const RequestsView = {
-  title: i18n.translate('inspectorViews.requests.requestsTitle', {
+  /*title: i18n.translate('inspectorViews.requests.requestsTitle', {
     defaultMessage: 'Requests'
-  }),
+  }),*/
+  title: {
+    key: 'inspectorViews.requests.requestsTitle',
+    defaultMessage: 'Requests',
+  },
   order: 20,
-  help: i18n.translate('inspectorViews.requests.requestsDescriptionTooltip', {
+  /*help: i18n.translate('inspectorViews.requests.requestsDescriptionTooltip', {
     defaultMessage: 'View the requests that collected the data'
-  }),
+  }),*/
+  help: {
+    key: 'inspectorViews.requests.requestsDescriptionTooltip',
+    defaultMessage: 'View the requests that collected the data',
+  },
   shouldShow(adapters) {
     return Boolean(adapters.requests);
   },

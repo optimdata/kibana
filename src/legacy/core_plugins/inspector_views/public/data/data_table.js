@@ -150,6 +150,7 @@ class DataTableFormat extends Component {
           sorting={true}
           pagination={pagination}
           compressed={true}
+          noItemsMessage={i18n.translate("inspectorViews.data.noItemsFound", {defaultMessage: "No items found"})}
         />
       </React.Fragment>
     );

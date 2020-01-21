@@ -17,10 +17,10 @@
  * under the License.
  */
 
-import dateMath from '@elastic/datemath';
-import moment from 'moment';
-import { timeUnits } from './time_units';
-import { i18n } from '@kbn/i18n';
+import dateMath from '@elastic/datemath'
+import moment from 'moment'
+import { getTimeUnits } from './time_units'
+import { i18n } from '@kbn/i18n'
 
 const TIME_NOW = 'now';
 
@@ -57,10 +57,15 @@ export function prettyDuration(timeFrom, timeTo, getConfig) {
   const quickRanges = getConfig('timepicker:quickRanges');
   const dateFormat = getConfig('dateFormat');
 
-  const lookupByRange = {};
-  quickRanges.forEach((frame) => {
-    lookupByRange[getDateLookupKey(frame.from, frame.to)] = frame;
-  });
+  const lookupByRange = {}
+  quickRanges.forEach(frame => {
+    lookupByRange[getDateLookupKey(frame.from, frame.to)] = {
+      ...frame,
+      display: i18n.translate(frame.display.key, {
+        defaultMessage: frame.display.defaultMessage,
+      }),
+    }
+  })
 
   // If both parts are date math, try to look up a reasonable string
   if (timeFrom && timeTo && !moment.isMoment(timeFrom) && !moment.isMoment(timeTo)) {
@@ -77,10 +82,13 @@ export function prettyDuration(timeFrom, timeTo, getConfig) {
         });
 
         if (unitId) {
-          text = text + ' ' + i18n.translate('common.ui.timepicker.roundedTo', {
-            defaultMessage: 'rounded to the {unit}',
-            values: { unit: timeUnits[unitId] }
-          });
+          text =
+            text +
+            ' ' +
+            i18n.translate('common.ui.timepicker.roundedTo', {
+              defaultMessage: 'rounded to the {unit}',
+              values: { unit: getTimeUnits()[unitId] },
+            })
         }
         return text;
       } else {

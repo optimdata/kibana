@@ -17,29 +17,29 @@
  * under the License.
  */
 
-import html from './timepicker.html';
-import './quick_panel';
-import './recent_panel';
-import './relative_panel';
-import './absolute_panel';
-import _ from 'lodash';
-import { relativeOptions } from './relative_options';
-import { parseRelativeParts } from './parse_relative_parts';
-import dateMath from '@elastic/datemath';
-import moment from 'moment';
-import './timepicker.less';
-import '../directives/input_datetime';
-import '../directives/inequality';
-import './refresh_intervals';
-import './kbn_global_timepicker';
-import { uiModules } from '../modules';
-import { TIME_MODES } from './modes';
-import { timeUnits } from './time_units';
-import { prettyInterval } from './pretty_interval';
-import { i18n } from '@kbn/i18n';
-const module = uiModules.get('ui/timepicker');
+import html from './timepicker.html'
+import './quick_panel'
+import './recent_panel'
+import './relative_panel'
+import './absolute_panel'
+import _ from 'lodash'
+import { getRelativeOptions } from './relative_options'
+import { parseRelativeParts } from './parse_relative_parts'
+import dateMath from '@elastic/datemath'
+import moment from 'moment'
+import './timepicker.less'
+import '../directives/input_datetime'
+import '../directives/inequality'
+import './refresh_intervals'
+import './kbn_global_timepicker'
+import { uiModules } from '../modules'
+import { TIME_MODES } from './modes'
+import { getTimeUnits } from './time_units'
+import { prettyInterval } from './pretty_interval'
+import { i18n } from '@kbn/i18n'
+const module = uiModules.get('ui/timepicker')
 
-module.directive('kbnTimepicker', function (refreshIntervals) {
+module.directive('kbnTimepicker', function(refreshIntervals) {
   return {
     restrict: 'E',
     scope: {
@@ -81,9 +81,9 @@ module.directive('kbnTimepicker', function (refreshIntervals) {
         to: moment()
       };
 
-      $scope.units = timeUnits;
+      $scope.units = getTimeUnits()
 
-      $scope.relativeOptions = relativeOptions;
+      $scope.relativeOptions = getRelativeOptions()
 
       $scope.$watch('from', function (date) {
         if (moment.isMoment(date) && $scope.mode === TIME_MODES.ABSOLUTE) {

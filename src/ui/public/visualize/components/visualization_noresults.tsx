@@ -18,6 +18,7 @@
  */
 
 import React from 'react';
+import { i18n } from '@kbn/i18n'
 import { dispatchRenderComplete } from '../../render_complete';
 
 interface VisualizationNoResultsProps {
@@ -26,6 +27,7 @@ interface VisualizationNoResultsProps {
 
 export class VisualizationNoResults extends React.Component<VisualizationNoResultsProps> {
   private containerDiv = React.createRef<HTMLDivElement>();
+  private noResultsMsg = i18n.translate('tableVis.vis.noResultsFoundTitle', {defaultMessage: 'No results found'});
 
   public render() {
     return (
@@ -35,7 +37,7 @@ export class VisualizationNoResults extends React.Component<VisualizationNoResul
           <h2 aria-hidden="true">
             <i aria-hidden="true" className="fa fa-meh-o" />
           </h2>
-          <h4>No results found</h4>
+          <h4>{this.noResultsMsg}</h4>
         </div>
         <div className="item bottom" />
       </div>

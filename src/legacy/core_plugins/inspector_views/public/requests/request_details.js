@@ -34,23 +34,26 @@ import { i18n } from '@kbn/i18n';
 const DETAILS = [
   {
     name: 'Statistics',
-    label: i18n.translate('inspectorViews.requests.statisticsTabLabel', {
+    label: {
+      key: 'inspectorViews.requests.statisticsTabLabel',
       defaultMessage: 'Statistics'
-    }),
+    },
     component: RequestDetailsStats
   },
   {
     name: 'Request',
-    label: i18n.translate('inspectorViews.requests.requestTabLabel', {
+    label: {
+      key: 'inspectorViews.requests.requestTabLabel',
       defaultMessage: 'Request'
-    }),
+    },
     component: RequestDetailsRequest
   },
   {
     name: 'Response',
-    label: i18n.translate('inspectorViews.requests.responseTabLabel', {
+    label: {
+      key: 'inspectorViews.requests.responseTabLabel',
       defaultMessage: 'Response'
-    }),
+    },
     component: RequestDetailsResponse
   },
 ];
@@ -95,7 +98,7 @@ class RequestDetails extends Component {
         onClick={() => this.selectDetailsTab(detail)}
         data-test-subj={`inspectorRequestDetail${detail.name}`}
       >
-        {detail.label}
+        {i18n.translate(detail.label.key, {defaultMessage: detail.label.defaultMessage})}
       </EuiTab>
     );
   }
