@@ -1,5 +1,4 @@
 import { i18n } from '@kbn/i18n';
-import moment from 'moment';
 
 angular.module('ui.bootstrap.datepicker', ['ui.bootstrap.dateparser', 'ui.bootstrap.position'])
 
@@ -93,7 +92,7 @@ angular.module('ui.bootstrap.datepicker', ['ui.bootstrap.dateparser', 'ui.bootst
     var model = ngModelCtrl.$modelValue ? new Date(ngModelCtrl.$modelValue) : null;
     return {
       date: date,
-      label: moment(date).format(format),
+      label: dateFilter(date, format),
       selected: model && this.compare(date, model) === 0,
       disabled: this.isDisabled(date),
       current: this.compare(date, new Date()) === 0
@@ -220,7 +219,7 @@ angular.module('ui.bootstrap.datepicker', ['ui.bootstrap.dateparser', 'ui.bootst
         // 42 is the number of days on a six-month calendar
         var days = getDates(firstDate, 42);
         for (var i = 0; i < 42; i ++) {
-          days[i] = angular.extend(ctrl.createDateObject(days[i], 'DD'), {
+          days[i] = angular.extend(ctrl.createDateObject(days[i], ctrl.formatDay), {
             secondary: days[i].getMonth() !== month,
             uid: scope.uniqueId + '-' + i
           });
@@ -229,15 +228,12 @@ angular.module('ui.bootstrap.datepicker', ['ui.bootstrap.dateparser', 'ui.bootst
         scope.labels = new Array(7);
         for (var j = 0; j < 7; j++) {
           scope.labels[j] = {
-            // abbr: dateFilter(days[j].date, ctrl.formatDayHeader),
-            abbr: moment(days[j].date).format('ddd'),
-            // full: dateFilter(days[j].date, 'EEEE')
-            full: moment(days[j].date).format('dddd')
+            abbr: dateFilter(days[j].date, ctrl.formatDayHeader),
+            full: dateFilter(days[j].date, 'EEEE')
           };
         }
 
-        // scope.title = dateFilter(ctrl.activeDate, ctrl.formatDayTitle);
-        scope.title = moment(ctrl.activeDate).format('MMMM YYYY');
+        scope.title = dateFilter(ctrl.activeDate, ctrl.formatDayTitle);
         scope.rows = ctrl.split(days, 7);
 
         if ( scope.showWeeks ) {
@@ -304,13 +300,12 @@ angular.module('ui.bootstrap.datepicker', ['ui.bootstrap.dateparser', 'ui.bootst
             year = ctrl.activeDate.getFullYear();
 
         for ( var i = 0; i < 12; i++ ) {
-          months[i] = angular.extend(ctrl.createDateObject(new Date(year, i, 1), 'MMMM'), {
+          months[i] = angular.extend(ctrl.createDateObject(new Date(year, i, 1), ctrl.formatMonth), {
             uid: scope.uniqueId + '-' + i
           });
         }
 
-        // scope.title = dateFilter(ctrl.activeDate, ctrl.formatMonthTitle);
-        scope.title = moment(ctrl.activeDate).format('YYYY');
+        scope.title = dateFilter(ctrl.activeDate, ctrl.formatMonthTitle);
         scope.rows = ctrl.split(months, 3);
       };
 
@@ -365,7 +360,7 @@ angular.module('ui.bootstrap.datepicker', ['ui.bootstrap.dateparser', 'ui.bootst
         var years = new Array(range);
 
         for ( var i = 0, start = getStartingYear(ctrl.activeDate.getFullYear()); i < range; i++ ) {
-          years[i] = angular.extend(ctrl.createDateObject(new Date(start + i, 0, 1), 'YYYY'), {
+          years[i] = angular.extend(ctrl.createDateObject(new Date(start + i, 0, 1), ctrl.formatYear), {
             uid: scope.uniqueId + '-' + i
           });
         }
