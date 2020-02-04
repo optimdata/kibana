@@ -372,7 +372,6 @@ app.directive('dashboardApp', function ($injector) {
         dashboardStateManager.setFullScreenMode(true);
       navActions[TopNavIds.EXIT_EDIT_MODE] = () => onChangeViewMode(DashboardViewMode.VIEW);
       navActions[TopNavIds.ENTER_EDIT_MODE] = () => onChangeViewMode(DashboardViewMode.EDIT);
-      navActions[TopNavIds.PRINT] = () => window.print();
       navActions[TopNavIds.SHARE_INUSE] = () => {
         parent.postMessage({ name: 'share' }, '*');
       };
