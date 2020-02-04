@@ -657,7 +657,7 @@ export class QueryBarUI extends Component<Props, State> {
 
     const commonlyUsedRanges = config
       .get('timepicker:quickRanges')
-      .map(({ from, to, display }: { from: string; to: string; display: string }) => {
+      .map(({ from, to, display }: { from: string; to: string; display: any }) => {
         return {
           start: from,
           end: to,
