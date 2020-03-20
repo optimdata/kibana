@@ -34,6 +34,7 @@ uiModules
         perPage: '=?',
         sort: '=?',
         exportTitle: '=?',
+        hideExportActions: '=?',
         showTotal: '=',
         totalFunc: '='
       },
