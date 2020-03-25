@@ -34,6 +34,7 @@ uiModules
       scope: {
         rows: '=',
         columns: '=',
+        hideExportActions: '=?',
         linkToTop: '=',
         perPage: '=?',
         showBlankRows: '=?',

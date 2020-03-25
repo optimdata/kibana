@@ -7,7 +7,7 @@
   show-total="showTotal"
   totalFunc="totalFunc">
 
-  <div class="kbnAggTable__controls">
+  <div ng-if="!hideExportActions" class="kbnAggTable__controls">
     <small
       i18n-id="common.ui.aggTable.exportLabel"
       i18n-default-message="Export:"

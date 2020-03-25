@@ -67,6 +67,7 @@ function TableVisTypeProvider(Private) {
           columnIndex: null,
           direction: null
         },
+        hideExportActions: false,
         showTotal: false,
         totalFunc: 'sum'
       },
