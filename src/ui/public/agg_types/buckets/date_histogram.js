@@ -32,6 +32,22 @@ import { timefilter } from '../../timefilter';
 import dropPartialTemplate from '../controls/drop_partials.html';
 import { i18n } from '@kbn/i18n';
 
+function getCookie(cname) {
+  const name = cname + '=';
+  const decodedCookie = decodeURIComponent(document.cookie);
+  const ca = decodedCookie.split(';');
+  for(let i = 0; i < ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) === ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) === 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return '';
+}
+
 const config = chrome.getUiSettingsClient();
 const detectedTimezone = tzDetect.determine().name();
 const tzOffset = moment().format('Z');
@@ -50,6 +66,7 @@ function setBounds(agg, force) {
   const bounds = agg.params.timeRange ? timefilter.calculateBounds(agg.params.timeRange) : null;
   agg.buckets.setBounds(agg.fieldIsTimeField() && bounds);
 }
+
 
 
 export const dateHistogramBucketAgg = new BucketAggType({
@@ -157,9 +174,16 @@ export const dateHistogramBucketAgg = new BucketAggType({
     },
     {
       name: 'time_zone',
-      default: () => {
-        const isDefaultTimezone = config.isDefault('dateFormat:tz');
-        return isDefaultTimezone ? detectedTimezone || tzOffset : config.get('dateFormat:tz');
+      write: (agg, output) => {
+        if (config.isDefault('dateFormat:tz')) {
+          output.params.time_zone = getCookie('timezone');
+        }
+        else if (config.get('dateFormat:tz') === 'Browser') {
+          output.params.time_zone = detectedTimezone || tzOffset;
+        }
+        else {
+          output.params.time_zone = config.get('dateFormat:tz');
+        }
       },
     },
     {
