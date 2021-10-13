@@ -76,6 +76,10 @@ function generateDLL(config) {
             },
             {
               test: /\.js$/,
+              include: /[\/\\]node_modules[\/\\]vega-lite[\/\\]/,
+            },
+            {
+              test: /\.js$/,
               include: /[\/\\]node_modules[\/\\]x-pack[\/\\]/,
               exclude: /[\/\\]node_modules[\/\\]x-pack[\/\\](.+?[\/\\])*node_modules[\/\\]/,
             }
