@@ -18,7 +18,7 @@
  */
 
 import { KibanaMap } from 'ui/vis/map/kibana_map';
-import * as vega from 'vega-lib';
+import * as vega from 'vega';
 import { VegaBaseView } from './vega_base_view';
 import { VegaMapLayer } from './vega_map_layer';
 import { i18n }  from '@kbn/i18n';
